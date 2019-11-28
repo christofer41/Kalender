@@ -7,7 +7,11 @@ html, body {
 .grid {
     display: grid;
     grid-template-columns: 22rem auto;
-    grid-template-rows: 8rem auto;
+    grid-template-rows: 5rem auto;
+}
+
+header h1 {
+    font-family: 'Quicksand', sans-serif;
 }
 
 header {
