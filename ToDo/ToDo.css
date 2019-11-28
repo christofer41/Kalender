@@ -1,0 +1,53 @@
+aside >*{ /*We make the content center*/
+    display: flex;
+    justify-content: center;
+}
+
+#toDoHolder{ /*Lådan som håller den aktuella ToDo*/
+    border: 2px solid red;
+    width: 100%;
+    height: 10rem;
+}
+
+#toDoHolder >*{ /*Centrera*/
+    display: flex;
+    justify-content: center;
+}
+
+#textPromptDiv{ /*The div that pops up when the user wants to add a ToDo */
+    display: none;
+
+    border: 2px solid blue;
+    background-color: rgb(179, 179, 179);
+
+    position: absolute;
+    left: 15rem;
+    right: 15rem;
+    top: 10rem;
+    bottom: 10rem;
+
+    animation-name: fadeIn;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+@keyframes fadeIn{ /*A fade in animation*/
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+#textPromptDiv >*{ /*Center the content*/
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+#textPrompt, #enterTheTextButton{ /*We set margin to 0 to be able to center*/
+    margin: 0 auto;
+    text-align: center;
+}

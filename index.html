@@ -13,7 +13,7 @@
     <link rel="stylesheet" media="(min-width: 800px)" href="calender/calender.css">
     <link rel="stylesheet" media="(min-width: 800px)" href="ToDo/ToDo.css">
 
-    <script defer src="layout/layout.js"></script>
+
     <script defer src="calender/calender.js"></script>
     <script defer src="ToDo/ToDo.js"></script>
     <title>Document</title>
@@ -23,7 +23,17 @@
 
     </header>
     <aside>
-
+        <div id="textPromptDiv">
+            <label for="textPrompt">What would you like to add?</label>
+            <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
+            <button id="enterTheTextButton">Enter</button>
+        </div>
+        <div id="toDoHolder">
+            <p id="toDoText"></p>
+        </div>
+        <div>
+            <button id="addTodo">Lägg till ToDo</button>
+        </div>
     </aside>
     <main>
 
