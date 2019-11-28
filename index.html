@@ -24,15 +24,22 @@
     </header>
     <aside>
         <div id="textPromptDiv">
-            <label for="textPrompt">What would you like to add?</label>
-            <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
-            <button id="enterTheTextButton">Enter</button>
+            <div id="addPromptDiv">
+                <label for="textPrompt">What would you like to add?</label>
+                <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
+                <button class="textButton" id="enterTheTextButton">Enter</button>
+            </div>
+            <div id="removePromptDiv">
+                <h2>Are you sure that you would like to remove this?</h2>
+                <button class="textButton" id="removeTheTextButton">Enter</button>
+            </div>
         </div>
         <div id="toDoHolder">
             <p id="toDoText"></p>
         </div>
         <div>
             <button id="addTodo">Lägg till ToDo</button>
+            <button id="removeTodo">Ta bort ToDo</button>
         </div>
     </aside>
     <main>
