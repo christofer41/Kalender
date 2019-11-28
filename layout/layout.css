@@ -22,10 +22,6 @@ header {
     align-items: center;
 }
 
-.iconsForSeasons, .iconsForCalenderMonths {
-    border: 1px solid purple;
-}
-
 aside {
     border: 2px solid blue;
     grid-column: 1;
