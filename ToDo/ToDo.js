@@ -1,4 +1,5 @@
 window.addEventListener("load", loadPage) 
+window.addEventListener("load", loadExistingTodo)
 /**
  * When the page loads
  */
@@ -17,6 +18,16 @@ function loadPage(){
 
     addTodoButton.addEventListener("click", addTodoPrompt);
     removeTodoButton.addEventListener("click", removeTodoPrompt);
+}
+
+
+/**
+ * We load existing todos
+ */
+function loadExistingTodo(){
+    if (localStorage.currentToDo){
+        toDoText.innerHTML = JSON.parse(localStorage.currentToDo);
+    }
 }
 
 /**
@@ -48,6 +59,8 @@ function addTodo(){
     let textInput = textPrompt.value;
     toDoText.innerHTML = textInput;
     textPromptDiv.style.display = "none";
+
+    localStorage.currentToDo = JSON.stringify(textInput);
     
     textPrompt.value = "";
 }
