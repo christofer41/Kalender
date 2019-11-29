@@ -10,7 +10,10 @@ html, body {
     grid-template-rows: 5rem auto;
 }
 
+/* flexed header to make imgs and h1 have enough space between them */
+
 header {
+    background: rgb(206, 75, 75);
     grid-column: 1 / 4;
     grid-row: 1;
     text-align: center;
@@ -20,6 +23,8 @@ header {
     justify-content: space-around;
     align-items: center;
 }
+
+/* code to make all imgs in header invisible until right month/season */
 
 .iconsForSeasons img, .iconsForCalenderMonths img {
     display: none;
