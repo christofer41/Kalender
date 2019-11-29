@@ -41,7 +41,23 @@ aside >*{ /*We make the content center*/
     }
 }
 
-#addPromptDiv, #removePromptDiv{
+
+#toDoButtons { /*The div for the buttons*/
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+
+#toDoButtons >* {
+    display: flex;
+    justify-content: center;
+}
+
+#toDoButtons button{
+    width: 12rem;
+}
+
+#addPromptDiv, #removePromptDiv{ /*We make the prompt divs fit the entire div*/
     width: 100%;
     height: 100%;
 }
@@ -52,10 +68,6 @@ aside >*{ /*We make the content center*/
     justify-content: center;
 }
 
-#textPrompt, #enterTheTextButton, #removeTheTextButton{ /*We set margin to 0 to be able to center*/
-    margin: 0 auto;
-    text-align: center;
-}
 
 #addPromptDiv{
     display: none;
@@ -63,4 +75,9 @@ aside >*{ /*We make the content center*/
 
 #removePromptDiv{
     display: none;
+}
+
+#textPrompt, #enterTheTextButton, #removeTheTextButton, button { /*We set margin to 0 to be able to center*/
+    margin: 0 auto;
+    text-align: center;
 }

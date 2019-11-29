@@ -1,5 +1,4 @@
-window.addEventListener("load", loadPage()) 
-
+window.addEventListener("load", loadPage) 
 /**
  * When the page loads
  */
@@ -31,6 +30,9 @@ function addTodoPrompt(){
     promptButton[0].addEventListener("click", addTodo)
 }
 
+/**
+ * When the user clicks the remove button
+ */
 function removeTodoPrompt(){
 
     textPromptDiv.style.display = "block";
@@ -46,10 +48,13 @@ function addTodo(){
     let textInput = textPrompt.value;
     toDoText.innerHTML = textInput;
     textPromptDiv.style.display = "none";
-
+    
     textPrompt.value = "";
 }
 
+/**
+ * When the user has decided to remove the ToDo and presses the button
+ */
 function removeTodo(){
     textPromptDiv.style.display = "none";
     toDoText.innerHTML = "";
