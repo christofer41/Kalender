@@ -6,6 +6,10 @@ const month = date.getMonth() + 1
 let monthImgs = document.getElementsByClassName('monthImgs')
 let seasonImgs = document.getElementsByClassName('seasonImgs')
 
+/**
+ * function to make all imgs for each season display as none if not used
+ * 
+ */
 function makeSeasonImgInvisible() {
 
     for (let i = 0; i < seasonImgs.length; i++) {
@@ -13,6 +17,11 @@ function makeSeasonImgInvisible() {
 
     }
 }
+
+/**
+ * function to load the specific img to use for chosen season
+ * 
+ */
 
 function loadSeasonImgs() {
 
@@ -40,6 +49,11 @@ function loadSeasonImgs() {
     }
 }
 
+/**
+ * function to make all imgs for each month display as none if not used
+ *
+ */
+
 function makeImgsInvisible() {
 
     for (let i = 0; i < monthImgs.length; i++) {
@@ -47,6 +61,11 @@ function makeImgsInvisible() {
 
     }
 }
+
+/**
+ * function to load the specific img to use for chosen month
+ *
+ */
 
 function loadmonthImgs() {
     switch (month) {
