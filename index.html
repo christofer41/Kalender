@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <!--För dator-->
     <link rel="stylesheet" media="(min-width: 800px)" href="layout/layout.css">
     <!--För mobil-->
-    <link rel="stylesheet" media="(max-width: 799px)"  href="layout/layoutPhone.css"> 
+    <link rel="stylesheet" media="(max-width: 799px)" href="layout/layoutPhone.css">
     <script defer type="text/javascript" src="jquery-3.4.1.js"></script>
 
     <link rel="stylesheet" media="(min-width: 800px)" href="calender/calender.css">
@@ -16,11 +17,34 @@
 
     <script defer src="calender/calender.js"></script>
     <script defer src="ToDo/ToDo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
-<body class="grid">
-    <header>
 
+<body class="grid">
+    <!--Header with 2 divs for each month and each season. They appear when right month/season is active-->
+    <header>
+        <div class="iconsForSeasons">
+            <img src="/Images/seasons/winter.png" class="seasonImgs" class="seasonImgs" id="winter" alt="Winter">
+            <img src="Images/seasons/spring.png" class="seasonImgs" id="spring" alt="Spring">
+            <img src="Images/seasons/summer.png" class="seasonImgs" id="summer" alt="Summer">
+            <img src="Images/seasons/fall.png" class="seasonImgs" id="fall" alt="Fall">
+        </div>
+        <h1>Kalender 2019</h1>
+        <div class="iconsForCalenderMonths">
+            <img src="Images/imgsForMonths/november.png" class="monthImgs" id="november" alt="November">
+            <img src="Images/imgsForMonths/december.png" class="monthImgs" id="december" alt="December">
+            <img src="Images/imgsForMonths/january.png" class="monthImgs" id="january" alt="Januari">
+            <img src="Images/imgsForMonths/february.png" class="monthImgs" id="february" alt="Februari">
+            <img src="Images/imgsForMonths/march.png" class="monthImgs" id="march" alt="Mars">
+            <img src="Images/imgsForMonths/april.png" class="monthImgs" id="april" alt="April">
+            <img src="Images/imgsForMonths/may.png" class="monthImgs" id="may" alt="Maj">
+            <img src="Images/imgsForMonths/june.png" class="monthImgs" id="june" alt="Juni">
+            <img src="Images/imgsForMonths/july.png" class="monthImgs" id="july" alt="Juli">
+            <img src="Images/imgsForMonths/august.png" class="monthImgs" id="august" alt="Augusti">
+            <img src="Images/imgsForMonths/september.png" class="monthImgs" id="september" alt="September">
+            <img src="Images/imgsForMonths/october.png" class="monthImgs" id="october" alt="Oktober">
+        </div>
     </header>
     <aside>
         <div id="textPromptDiv">
@@ -39,4 +63,5 @@
 
     </main>
 </body>
+
 </html>
