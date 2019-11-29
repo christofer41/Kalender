@@ -47,16 +47,28 @@
         </div>
     </header>
     <aside>
+        <!--This is for the text prompt that appears-->
         <div id="textPromptDiv">
-            <label for="textPrompt">What would you like to add?</label>
-            <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
-            <button id="enterTheTextButton">Enter</button>
+            <div id="addPromptDiv"> <!--This is the add text prompt-->
+                <label for="textPrompt">What would you like to add?</label>
+                <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
+                <button class="textButton" id="enterTheTextButton">Enter</button>
+            </div>
+            <div id="removePromptDiv"> <!--This is the remove text prompt-->
+                <h2>Are you sure that you would like to remove this?</h2>
+                <button class="textButton" id="removeTheTextButton">Enter</button>
+            </div>
         </div>
+
+        <!--This is the div that holds the current ToDo-->
         <div id="toDoHolder">
             <p id="toDoText"></p>
         </div>
-        <div>
+
+        <!--This is the div that hold the buttons for the ToDo-->
+        <div id="toDoButtons">
             <button id="addTodo">Lägg till ToDo</button>
+            <button id="removeTodo">Ta bort ToDo</button>
         </div>
     </aside>
     <main>

@@ -41,13 +41,43 @@ aside >*{ /*We make the content center*/
     }
 }
 
-#textPromptDiv >*{ /*Center the content*/
+
+#toDoButtons { /*The div for the buttons*/
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+
+#toDoButtons >* {
+    display: flex;
+    justify-content: center;
+}
+
+#toDoButtons button{
+    width: 12rem;
+}
+
+#addPromptDiv, #removePromptDiv{ /*We make the prompt divs fit the entire div*/
+    width: 100%;
+    height: 100%;
+}
+
+#addPromptDiv >*, #removePromptDiv >*{ /*Center the content*/
     margin: 1rem;
     display: flex;
     justify-content: center;
 }
 
-#textPrompt, #enterTheTextButton{ /*We set margin to 0 to be able to center*/
+
+#addPromptDiv{
+    display: none;
+}
+
+#removePromptDiv{
+    display: none;
+}
+
+#textPrompt, #enterTheTextButton, #removeTheTextButton, button { /*We set margin to 0 to be able to center*/
     margin: 0 auto;
     text-align: center;
 }
