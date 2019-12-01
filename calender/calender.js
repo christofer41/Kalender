@@ -4,6 +4,10 @@
 //    - inputs:
 //      month - is a month number starts from 1 to 12
 
+let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
+setDates(currentMonth);
+setMonthName(currentMonth);
+
 function setDates(month) {
     const lastCellInCalender = 42;
 
@@ -67,7 +71,23 @@ function setMonthName(month) {
     monthNameElem.innerText = monthNames[month - 1];
 }
 
-const currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
-setDates(currentMonth);
-setMonthName(currentMonth);
+function monthBack() {
+    if (currentMonth === 1) {
+        return
+    }
+    currentMonth = currentMonth - 1;
+    setDates(currentMonth);
+    setMonthName(currentMonth);
+}
+
+function monthForward() {
+    if (currentMonth === 12) {
+        return
+    }
+    currentMonth = currentMonth + 1;
+    setDates(currentMonth);
+    setMonthName(currentMonth);
+}
+
+
 
