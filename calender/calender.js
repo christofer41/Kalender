@@ -7,6 +7,7 @@
 let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
 setDates(currentMonth);
 setMonthName(currentMonth);
+setArrowsVisibility(currentMonth);
 
 function setDates(month) {
     const lastCellInCalender = 42;
@@ -71,6 +72,17 @@ function setMonthName(month) {
     monthNameElem.innerText = monthNames[month - 1];
 }
 
+function setArrowsVisibility(month) {
+    document.getElementById('calend-nav-btn-back').style.display = 'block';
+    document.getElementById('calend-nav-btn-forward').style.display = 'block';
+    if (currentMonth === 1) {
+        document.getElementById('calend-nav-btn-back').style.display = 'none';
+    }
+    if (currentMonth === 12) {
+        document.getElementById('calend-nav-btn-forward').style.display = 'none';
+    }
+}
+
 function monthBack() {
     if (currentMonth === 1) {
         return
@@ -78,6 +90,7 @@ function monthBack() {
     currentMonth = currentMonth - 1;
     setDates(currentMonth);
     setMonthName(currentMonth);
+    setArrowsVisibility(currentMonth);
 }
 
 function monthForward() {
@@ -87,6 +100,7 @@ function monthForward() {
     currentMonth = currentMonth + 1;
     setDates(currentMonth);
     setMonthName(currentMonth);
+    setArrowsVisibility(currentMonth);
 }
 
 
