@@ -61,4 +61,13 @@ function getNumberOfDays(month) {
     return numberOfDaysInMonth[month - 1]
 }
 
-// setDates(12);
+function setMonthName(month) {
+    const monthNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+    const monthNameElem = document.getElementById('calend-month-name');
+    monthNameElem.innerText = monthNames[month - 1];
+}
+
+const currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
+setDates(currentMonth);
+setMonthName(currentMonth);
+
