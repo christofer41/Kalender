@@ -1,15 +1,24 @@
-//here js for calender manipulations
+// Functions to use from outside:
+// * setDates(month)
+//    - set dates in calender view for actual month
+//    - inputs:
+//      month - is a month number starts from 1 to 12
 
 function setDates(month) {
     const lastCellInCalender = 42;
-
-
-
 
     //number of cell in kalender in first week
     const firstDay = getFirstDayOfMonth(month);
     //in month
     const numberOfDays = getNumberOfDays(month);
+
+    // Hide or show last row in calender depend on number of cells needed
+    const lastRowElem = document.getElementById('last-calend-row');
+    lastRowElem.style.display = 'none';
+    if (firstDay + numberOfDays > 35) {
+        lastRowElem.style.display = 'flex';
+    }
+
     //clean cells before the first day
     for (let d = 1; d < firstDay; d++) {
         //get html-elem.for whole month-day cell
@@ -52,4 +61,4 @@ function getNumberOfDays(month) {
     return numberOfDaysInMonth[month - 1]
 }
 
-setDates(1);
+// setDates(12);
