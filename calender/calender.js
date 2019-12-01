@@ -1,6 +1,11 @@
 //here js for calender manipulations
 
 function setDates(month) {
+    const lastCellInCalender = 42;
+
+
+
+
     //number of cell in kalender in first week
     const firstDay = getFirstDayOfMonth(month);
     //in month
@@ -28,7 +33,7 @@ function setDates(month) {
     }
 
     //clean cells after the last day of the month
-    for (let d = firstDay + numberOfDays; d < 35 + 1; d++) {
+    for (let d = firstDay + numberOfDays; d < lastCellInCalender + 1; d++) {
         const dayElem = document.getElementById('d-' + d.toString());
         const dateElem = dayElem.getElementsByClassName('date')[0];
         dateElem.innerText = '';
@@ -38,13 +43,13 @@ function setDates(month) {
 }
 
 function getFirstDayOfMonth(month) {
-    // example
-    return 2
+    const firstDayOfMonth = [2, 5, 5, 1, 3, 6, 1, 4, 7, 2, 5, 7];
+    return firstDayOfMonth[month-1]
 }
 
 function getNumberOfDays(month) {
-    //example
-    return 30
+    const numberOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    return numberOfDaysInMonth[month - 1]
 }
 
-setDates(5);
+setDates(1);
