@@ -26,22 +26,22 @@ function makeSeasonImgInvisible() {
 function loadSeasonImgs() {
 
     switch (month) {
-        case 12 | 1 | 2:
+        case 12 || 1 || 2:
             makeSeasonImgInvisible()
             document.getElementById('winter').style.display = 'block'
             break;
 
-        case 3 | 4 | 5:
+        case 3 || 4 || 5:
             makeSeasonImgInvisible()
             document.getElementById('spring').style.display = 'block'
             break;
 
-        case 6 | 7 | 8:
+        case 6 || 7 || 8:
             makeSeasonImgInvisible()
             document.getElementById('summer').style.display = 'block'
             break;
 
-        case 9 | 10 | 11:
+        case 9 || 10 || 11:
             makeSeasonImgInvisible()
             document.getElementById('fall').style.display = 'block'
             break;
