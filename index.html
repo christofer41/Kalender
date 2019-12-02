@@ -18,6 +18,7 @@
     <script defer src="calender/calender.js"></script>
     <script defer src="ToDo/ToDo.js"></script>
     <script defer src="layout/layout.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Tomorrow&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -26,7 +27,7 @@
     <!--Header with 2 divs for each month and each season. They appear when right month/season is active-->
     <header>
         <div class="iconsForSeasons">
-            <img src="/Images/seasons/winter.png" class="seasonImgs" class="seasonImgs" id="winter" alt="Winter">
+            <img src="Images/seasons/winter.png" class="seasonImgs" class="seasonImgs" id="winter" alt="Winter">
             <img src="Images/seasons/spring.png" class="seasonImgs" id="spring" alt="Spring">
             <img src="Images/seasons/summer.png" class="seasonImgs" id="summer" alt="Summer">
             <img src="Images/seasons/fall.png" class="seasonImgs" id="fall" alt="Fall">
@@ -50,17 +51,34 @@
     <aside>
         <!--This is for the text prompt that appears-->
         <div id="textPromptDiv">
-            <div id="addPromptDiv"> <!--This is the add text prompt-->
+            <div id="addPromptDiv">
+                <!--This is the add text prompt-->
                 <label for="textPrompt">What would you like to add?</label>
                 <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
                 <button class="textButton" id="enterTheTextButton">Enter</button>
             </div>
-            <div id="removePromptDiv"> <!--This is the remove text prompt-->
+            <div id="removePromptDiv">
+                <!--This is the remove text prompt-->
                 <h2>Are you sure that you would like to remove this?</h2>
                 <button class="textButton" id="removeTheTextButton">Enter</button>
             </div>
+            <div id="changePromptDiv">
+                <!--This is the change text prompt-->
+                <label for="changeTextPrompt">What would you like to change to?</label>
+                <textarea name="changeTextPrompt" id="changeTextPrompt" cols="30" rows="5"></textarea>
+                <button class="textButton" id="changeTheTextButton">Enter</button>
+            </div>
         </div>
 
+        <!--div for welcomemessage, timea and date-->
+        <div class="cat-image">
+            <img src="black-cat.png" alt="" srcset="">
+        </div>
+        <div class="welcomeMessage">
+            <p id="time"></p>
+            <p id="dateOfYear"></p>
+            <h3 id="dayOfWeek"></h3>
+        </div>
         <!--This is the div that holds the current ToDo-->
         <div id="toDoHolder">
             <p id="toDoText"></p>
@@ -70,6 +88,7 @@
         <div id="toDoButtons">
             <button id="addTodo">Lägg till ToDo</button>
             <button id="removeTodo">Ta bort ToDo</button>
+            <button id="changeTodo">Ändra en ToDo</button>
         </div>
     </aside>
     <main>
