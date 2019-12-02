@@ -93,9 +93,10 @@ aside>* {
 .welcomeMessage {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: column;
     border: 1px solid red;
+    padding-right: 3rem;
 }
 
 h3 {
@@ -112,6 +113,7 @@ h3 {
     font-size: 1rem;
     font-family: sans-serif;
     margin: 0.5rem 0 0.5rem 0;
+    padding-right: 1rem;
 }
 
 #time {
@@ -119,4 +121,8 @@ h3 {
     font-family: arial;
     margin: 0.5rem 0 0 0;
     font-family: 'Tomorrow', sans-serif;
+}
+
+.cat-image {
+    position: absolute;
 }
