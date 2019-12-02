@@ -1,0 +1,67 @@
+/* "*" is an universal selector that works for all elements/tags */
+/* make all elements border-sized */
+* {
+    /* The width and height properties include the content, padding, and border, but do not include the margin */
+    box-sizing: border-box;
+}
+
+#calender {
+    width: 100%;
+    min-width: 800px;
+}
+
+#calender .row {
+    display: flex;
+    width: 100%;
+}
+
+.month-day {
+    flex-basis: 14.29%;
+    height: 100px;
+    background-color: white;
+    border: 1px solid #c9c9c9;
+    margin: 3px 3px;
+    padding: 6px 6px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.month-day .date {
+    font-size: 1.2rem;
+    flex-basis: 50%;
+    font-weight: bold;
+}
+
+.month-day .event-box {
+    flex-basis: 100%;
+}
+
+.month-day .todo {
+    flex-basis: 50%;
+}
+.month-day .todo .badge {
+    background-color: #5b93df;
+    color: white;
+    border-radius: 0.5em;
+    display: inline-block;
+    text-align: center;
+    width: 2.5em;
+    font-size: 1.2rem;
+}
+.weekend {
+    background-color: #ffd2c9;
+}
+.holiday {
+    background-color: #ff87be;
+    color: white;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 1px 3px;
+}
+
+.event {
+    background-color: #fff1cc;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 1px 3px;
+
+}
