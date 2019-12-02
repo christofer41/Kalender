@@ -1,19 +1,8 @@
+/* "*" is an universal selector that works for all elements/tags */
+/* make all elements border-sized */
 * {
+    /* The width and height properties include the content, padding, and border, but do not include the margin */
     box-sizing: border-box;
-}
-
-.main {
-    background-color: #f3f3f3;
-    display: flex;
-    align-items: stretch;
-    max-width: 1600px;
-    margin: auto;
-}
-
-#todo-list {
-    width: 300px;
-    background-color: #c9c9c9;
-    min-width: 150px;
 }
 
 #calender {
