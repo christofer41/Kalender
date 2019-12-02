@@ -1,7 +1,9 @@
+/* "*" is an universal selector that works for all elements/tags */
+/* make all elements border-sized */
 * {
+    /* The width and height properties include the content, padding, and border, but do not include the margin */
     box-sizing: border-box;
 }
-
 
 #calender {
     width: 100%;
