@@ -2,7 +2,7 @@ window.addEventListener("load", printDay)
 window.addEventListener("load", printDate)
 window.addEventListener("load", printTime)
 
-window.addEventListener("load", loadPage) 
+window.addEventListener("load", loadPage)
 window.addEventListener("load", loadExistingTodo)
 
 /**
@@ -34,8 +34,8 @@ function loadPage() {
 /**
  * We load existing todos
  */
-function loadExistingTodo(){
-    if (localStorage.currentToDo){
+function loadExistingTodo() {
+    if (localStorage.currentToDo) {
         toDoText.innerHTML = JSON.parse(localStorage.currentToDo);
     }
 }
@@ -91,7 +91,7 @@ function addTodo() {
     textPromptDiv.style.display = "none";
 
     localStorage.currentToDo = JSON.stringify(textInput);
-    
+
     textPrompt.value = "";
 }
 
@@ -112,7 +112,7 @@ function changeTodo() {
     textPromptDiv.style.display = "none";
 
     localStorage.currentToDo = JSON.stringify(textInput);
-    
+
     textPrompt.value = "";
 }
 
@@ -157,7 +157,8 @@ function printDay() {
  */
 function printDate() {
     const date = new Date()
-    document.getElementById('dateOfYear').innerHTML = date.getDate() + ' ' + '/' + ' ' + date.getMonth() + ' ' + '/' + ' ' + date.getUTCFullYear()
+    let month = date.getMonth() + 1
+    document.getElementById('dateOfYear').innerHTML = date.getDate() + ' ' + '/' + ' ' + month + ' ' + '/' + ' ' + date.getUTCFullYear()
 }
 /**
  * function to get real time
