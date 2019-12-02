@@ -4,6 +4,16 @@
 //    - inputs:
 //      month - is a month number starts from 1 to 12
 
+// const holidays = [
+//     [],
+//     [],
+//     ...
+//     [
+//         { name: 'julafton', day: 24 },
+//         { name: 'jul', day: 25 },
+//     ]
+// ];
+
 let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
 setDates(currentMonth);
 setMonthName(currentMonth);
