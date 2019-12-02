@@ -10,19 +10,24 @@ window.addEventListener("load", loadExistingTodo)
  */
 function loadPage() {
     let addTodoButton = document.getElementById("addTodo");
-    let removeTodoButton = document.getElementById("removeTodo")
+    let removeTodoButton = document.getElementById("removeTodo");
+    let changeTodoButton = document.getElementById("changeTodo");
+
     toDoHolder = document.getElementById("toDoHolder");
     textPromptDiv = document.getElementById("textPromptDiv");
     promptButton = document.getElementsByClassName("textButton");
 
     textPrompt = document.getElementById("textPrompt");
+    changeTextPrompt = document.getElementById("changeTextPrompt");
     toDoText = document.getElementById("toDoText");
 
     promptDivAdd = document.getElementById("addPromptDiv");
     promptDivRemove = document.getElementById("removePromptDiv");
+    promptDivChange = document.getElementById("changePromptDiv");
 
     addTodoButton.addEventListener("click", addTodoPrompt);
     removeTodoButton.addEventListener("click", removeTodoPrompt);
+    changeTodoButton.addEventListener("click", changeTodoPrompt);
 }
 
 
@@ -41,8 +46,11 @@ function loadExistingTodo(){
 function addTodoPrompt() {
 
     textPromptDiv.style.display = "block";
+
     promptDivAdd.style.display = "block";
     promptDivRemove.style.display = "none";
+    promptDivChange.style.display = "none";
+
     promptButton[0].addEventListener("click", addTodo)
 }
 
@@ -52,9 +60,26 @@ function addTodoPrompt() {
 function removeTodoPrompt() {
 
     textPromptDiv.style.display = "block";
+
     promptDivAdd.style.display = "none";
     promptDivRemove.style.display = "block"
+    promptDivChange.style.display = "none";
+
     promptButton[1].addEventListener("click", removeTodo)
+}
+
+/**
+ * When the user has written in text that he/she wants to change to and presses the button
+ */
+function changeTodoPrompt() {
+
+    textPromptDiv.style.display = "block";
+
+    promptDivAdd.style.display = "none";
+    promptDivRemove.style.display = "none"
+    promptDivChange.style.display = "block";
+
+    promptButton[2].addEventListener("click", changeTodo)
 }
 
 /**
@@ -76,6 +101,19 @@ function addTodo() {
 function removeTodo() {
     textPromptDiv.style.display = "none";
     toDoText.innerHTML = "";
+}
+
+/**
+ * When the user has decided to change the Todo and presses the button
+ */
+function changeTodo() {
+    let textInput = changeTextPrompt.value;
+    toDoText.innerHTML = textInput;
+    textPromptDiv.style.display = "none";
+
+    localStorage.currentToDo = JSON.stringify(textInput);
+    
+    textPrompt.value = "";
 }
 
 /**
