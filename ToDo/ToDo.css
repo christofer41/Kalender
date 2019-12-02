@@ -1,83 +1,117 @@
-aside >*{ /*We make the content center*/
+aside>* {
+    /*We make the content center*/
     display: flex;
     justify-content: center;
 }
 
-#toDoHolder{ /*Lådan som håller den aktuella ToDo*/
+#toDoHolder {
+    /*Lådan som håller den aktuella ToDo*/
     border: 2px solid red;
     width: 100%;
     height: 10rem;
 }
 
-#toDoHolder >*{ /*Centrera*/
+#toDoHolder>* {
+    /*Centrera*/
     display: flex;
     justify-content: center;
 }
 
-#textPromptDiv{ /*The div that pops up when the user wants to add a ToDo */
+#textPromptDiv {
+    /*The div that pops up when the user wants to add a ToDo */
     display: none;
-
     border: 2px solid blue;
     background-color: rgb(179, 179, 179);
-
     position: absolute;
     left: 15rem;
     right: 15rem;
     top: 10rem;
     bottom: 10rem;
-
     animation-name: fadeIn;
     animation-duration: 300ms;
     animation-timing-function: linear;
     animation-iteration-count: 1;
 }
 
-@keyframes fadeIn{ /*A fade in animation*/
-    from{
+@keyframes fadeIn {
+    /*A fade in animation*/
+    from {
         opacity: 0;
     }
-    to{
+    to {
         opacity: 1;
     }
 }
 
-
-#toDoButtons { /*The div for the buttons*/
+#toDoButtons {
+    /*The div for the buttons*/
     border: 2px solid blue;
     display: flex;
     flex-direction: column;
 }
 
-#toDoButtons >* {
+#toDoButtons>* {
     display: flex;
     justify-content: center;
 }
 
-#toDoButtons button{
+#toDoButtons button {
     width: 12rem;
 }
 
-#addPromptDiv, #removePromptDiv{ /*We make the prompt divs fit the entire div*/
+#addPromptDiv, #removePromptDiv {
+    /*We make the prompt divs fit the entire div*/
     width: 100%;
     height: 100%;
 }
 
-#addPromptDiv >*, #removePromptDiv >*{ /*Center the content*/
+#addPromptDiv>*, #removePromptDiv>* {
+    /*Center the content*/
     margin: 1rem;
     display: flex;
     justify-content: center;
 }
 
-
-#addPromptDiv{
+#addPromptDiv {
     display: none;
 }
 
-#removePromptDiv{
+#removePromptDiv {
     display: none;
 }
 
-#textPrompt, #enterTheTextButton, #removeTheTextButton, button { /*We set margin to 0 to be able to center*/
+#textPrompt, #enterTheTextButton, #removeTheTextButton, button {
+    /*We set margin to 0 to be able to center*/
     margin: 0 auto;
     text-align: center;
+}
+
+.welcomeMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid red;
+}
+
+h3 {
+    font-size: 1.7rem;
+    margin: 0;
+    font-family: arial;
+    font-weight: lighter;
+    text-transform: uppercase;
+}
+
+/* styles the divs for time,date and day of the week */
+
+#dateOfYear {
+    font-size: 1rem;
+    font-family: sans-serif;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+#time {
+    font-size: 2rem;
+    font-family: arial;
+    margin: 0.5rem 0 0 0;
 }

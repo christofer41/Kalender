@@ -1,9 +1,14 @@
+window.addEventListener("load", printDay)
+window.addEventListener("load", printDate)
+window.addEventListener("load", printTime)
+
 window.addEventListener("load", loadPage) 
 window.addEventListener("load", loadExistingTodo)
+
 /**
  * When the page loads
  */
-function loadPage(){    
+function loadPage() {
     let addTodoButton = document.getElementById("addTodo");
     let removeTodoButton = document.getElementById("removeTodo")
     toDoHolder = document.getElementById("toDoHolder");
@@ -33,7 +38,7 @@ function loadExistingTodo(){
 /**
  * When the user clicks the add button
  */
-function addTodoPrompt(){
+function addTodoPrompt() {
 
     textPromptDiv.style.display = "block";
     promptDivAdd.style.display = "block";
@@ -44,7 +49,7 @@ function addTodoPrompt(){
 /**
  * When the user clicks the remove button
  */
-function removeTodoPrompt(){
+function removeTodoPrompt() {
 
     textPromptDiv.style.display = "block";
     promptDivAdd.style.display = "none";
@@ -55,7 +60,7 @@ function removeTodoPrompt(){
 /**
  * When the user has written in the text and presses the button
  */
-function addTodo(){
+function addTodo() {
     let textInput = textPrompt.value;
     toDoText.innerHTML = textInput;
     textPromptDiv.style.display = "none";
@@ -68,7 +73,69 @@ function addTodo(){
 /**
  * When the user has decided to remove the ToDo and presses the button
  */
-function removeTodo(){
+function removeTodo() {
     textPromptDiv.style.display = "none";
     toDoText.innerHTML = "";
+}
+
+/**
+ * function to print out the day of the week
+ * 
+ */
+
+function printDay() {
+    const date = new Date()
+    let day = date.getDay()
+
+    switch (day) {
+        case 1:
+            document.getElementById('dayOfWeek').innerHTML = 'Måndag'
+            break;
+        case 2:
+            document.getElementById('dayOfWeek').innerHTML = 'Tisdag'
+            break;
+        case 3:
+            document.getElementById('dayOfWeek').innerHTML = 'Onsdag'
+            break;
+        case 4:
+            document.getElementById('dayOfWeek').innerHTML = 'Torsdag'
+            break;
+        case 5:
+            document.getElementById('dayOfWeek').innerHTML = 'Fredag'
+            break;
+        case 6:
+            document.getElementById('dayOfWeek').innerHTML = 'Lördag'
+            break;
+        case 7:
+            document.getElementById('dayOfWeek').innerHTML = 'Söndag'
+            break;
+    }
+}
+
+
+/**
+ * function to print out the date
+ *
+ */
+function printDate() {
+    const date = new Date()
+    document.getElementById('dateOfYear').innerHTML = date.getDate() + ' ' + '/' + ' ' + date.getMonth() + ' ' + '/' + ' ' + date.getUTCFullYear()
+}
+/**
+ * function to get real time
+ * 
+ */
+function printTime() {
+    const date = new Date()
+    let hour = date.getHours()
+    let minutes = date.getMinutes()
+    let seconds = date.getSeconds()
+    minutes = checkTime(minutes)
+    seconds = checkTime(seconds)
+    document.getElementById('time').innerHTML = hour + ':' + minutes + ':' + seconds
+    setTimeout(printTime, 500)
+}
+function checkTime(i) {
+    if (i < 10) { i = '0' + i }
+    return i
 }
