@@ -65,7 +65,7 @@ aside>* {
     height: 100%;
 }
 
-#addPromptDiv>*, #removePromptDiv>*, #changePromptDiv >* {
+#addPromptDiv>*, #removePromptDiv>*, #changePromptDiv>* {
     /*Center the content*/
     margin: 1rem;
     display: flex;
@@ -118,4 +118,5 @@ h3 {
     font-size: 2rem;
     font-family: arial;
     margin: 0.5rem 0 0 0;
+    font-family: 'Tomorrow', sans-serif;
 }
