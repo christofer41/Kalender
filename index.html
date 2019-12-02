@@ -50,17 +50,31 @@
     <aside>
         <!--This is for the text prompt that appears-->
         <div id="textPromptDiv">
-            <div id="addPromptDiv"> <!--This is the add text prompt-->
+            <div id="addPromptDiv">
+                <!--This is the add text prompt-->
                 <label for="textPrompt">What would you like to add?</label>
                 <textarea name="textPrompt" id="textPrompt" cols="30" rows="5"></textarea>
                 <button class="textButton" id="enterTheTextButton">Enter</button>
             </div>
-            <div id="removePromptDiv"> <!--This is the remove text prompt-->
+            <div id="removePromptDiv">
+                <!--This is the remove text prompt-->
                 <h2>Are you sure that you would like to remove this?</h2>
                 <button class="textButton" id="removeTheTextButton">Enter</button>
             </div>
+            <div id="changePromptDiv">
+                <!--This is the change text prompt-->
+                <label for="changeTextPrompt">What would you like to change to?</label>
+                <textarea name="changeTextPrompt" id="changeTextPrompt" cols="30" rows="5"></textarea>
+                <button class="textButton" id="changeTheTextButton">Enter</button>
+            </div>
         </div>
 
+        <!--div for welcomemessage, timea and date-->
+        <div class="welcomeMessage">
+            <p id="time"></p>
+            <p id="dateOfYear"></p>
+            <h3 id="dayOfWeek"></h3>
+        </div>
         <!--This is the div that holds the current ToDo-->
         <div id="toDoHolder">
             <p id="toDoText"></p>
@@ -70,6 +84,7 @@
         <div id="toDoButtons">
             <button id="addTodo">Lägg till ToDo</button>
             <button id="removeTodo">Ta bort ToDo</button>
+            <button id="changeTodo">Ändra en ToDo</button>
         </div>
     </aside>
     <main>
