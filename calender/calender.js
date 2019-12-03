@@ -14,6 +14,39 @@
 //     ]
 // ];
 
+const holidays = [
+    [
+        { name: 'Nyårsdagen', day: 1 },
+        { name: 'Trettondedag jul', day: 6 },
+    ],
+    [
+        { name: 'Långfredagen', day: 19 },
+        { name: 'Påskdagen', day: 21 },
+        { name: 'Annandag påsk', day: 22 },
+    ],
+    [
+        { name: 'Första maj', day: 1 },
+        { name: 'Kristi himmelfärdsdag', day: 30 },
+    ],
+    [
+        { name: 'Sveriges nationaldag', day: 6 },
+        { name: 'Pingstdagen', day: 9 },
+        { name: 'Midsommar', day: 22 },
+    ],
+    [
+        { name: 'Alla helgons dag', day: 2 },
+    ],
+    [
+        { name: 'Juldagen', day: 25 },
+        { name: 'Annandag jul', day: 26 },
+    ]
+];
+
+function arrangeHolidays() {
+
+}
+
+
 let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
 setDates(currentMonth);
 setMonthName(currentMonth);
