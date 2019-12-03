@@ -1,5 +1,7 @@
 /* "*" is an universal selector that works for all elements/tags */
+
 /* make all elements border-sized */
+
 * {
     /* The width and height properties include the content, padding, and border, but do not include the margin */
     box-sizing: border-box;
@@ -30,6 +32,7 @@
     /* make all child element like 'events' and 'holidays' wrapable to the next row inside the cell */
     flex-wrap: wrap;
 }
+
 .month-day .date {
     font-size: 1.2rem;
     /* USE 50% of cell width for date */
@@ -78,4 +81,12 @@
     margin-top: 1px;
     margin-bottom: 1px;
     padding: 1px 3px;
+}
+
+table {
+    width: 100%;
+}
+
+.wknd {
+    color: red;
 }
