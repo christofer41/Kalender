@@ -4,6 +4,11 @@
 //    - inputs:
 //      month - is a month number starts from 1 to 12
 
+let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
+setDates(currentMonth);
+setMonthName(currentMonth);
+setArrowsVisibility(currentMonth);
+
 function setDates(month) {
     const lastCellInCalender = 42;
 
@@ -61,4 +66,42 @@ function getNumberOfDays(month) {
     return numberOfDaysInMonth[month - 1]
 }
 
-// setDates(12);
+function setMonthName(month) {
+    const monthNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+    const monthNameElem = document.getElementById('calend-month-name');
+    monthNameElem.innerText = monthNames[month - 1];
+}
+
+function setArrowsVisibility(month) {
+    document.getElementById('calend-nav-btn-back').style.display = 'block';
+    document.getElementById('calend-nav-btn-forward').style.display = 'block';
+    if (currentMonth === 1) {
+        document.getElementById('calend-nav-btn-back').style.display = 'none';
+    }
+    if (currentMonth === 12) {
+        document.getElementById('calend-nav-btn-forward').style.display = 'none';
+    }
+}
+
+function monthBack() {
+    if (currentMonth === 1) {
+        return
+    }
+    currentMonth = currentMonth - 1;
+    setDates(currentMonth);
+    setMonthName(currentMonth);
+    setArrowsVisibility(currentMonth);
+}
+
+function monthForward() {
+    if (currentMonth === 12) {
+        return
+    }
+    currentMonth = currentMonth + 1;
+    setDates(currentMonth);
+    setMonthName(currentMonth);
+    setArrowsVisibility(currentMonth);
+}
+
+
+

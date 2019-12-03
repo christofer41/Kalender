@@ -12,6 +12,7 @@
     <script defer type="text/javascript" src="jquery-3.4.1.js"></script>
 
     <link rel="stylesheet" media="(min-width: 800px)" href="calender/calender.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" media="(min-width: 800px)" href="ToDo/ToDo.css">
 
 
@@ -68,6 +69,26 @@
                 <textarea name="changeTextPrompt" id="changeTextPrompt" cols="30" rows="5"></textarea>
                 <button class="textButton" id="changeTheTextButton">Enter</button>
             </div>
+        </div>
+
+        <div id="calend-nav">
+            <div id="calend-nav-btn-back" onclick="monthBack()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div id="calend-month-name">Jovember</div>
+            <div id="calend-nav-btn-forward" onclick="monthForward()">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+
+        <!--div for welcomemessage, timea and date-->
+        <div class="cat-image">
+            <img src="black-cat.png" alt="" srcset="">
+        </div>
+        <div class="welcomeMessage">
+            <p id="time"></p>
+            <p id="dateOfYear"></p>
+            <h3 id="dayOfWeek"></h3>
         </div>
 
         <!--div for welcomemessage, timea and date-->
