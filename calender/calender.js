@@ -9,6 +9,8 @@ setDates(currentMonth);
 setMonthName(currentMonth);
 setArrowsVisibility(currentMonth);
 
+checkExcessDays(currentMonth);
+
 function setDates(month) {
     const lastCellInCalender = 42;
 
@@ -91,6 +93,8 @@ function monthBack() {
     setDates(currentMonth);
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
+
+    checkExcessDays(currentMonth)
 }
 
 function monthForward() {
@@ -101,7 +105,101 @@ function monthForward() {
     setDates(currentMonth);
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
+
+    checkExcessDays(currentMonth)
 }
 
+/**
+ * Goes through every day to find excess days
+ */
+function checkExcessDays(){
+    let start;
+    let end;
 
+    for (let i = 1; i <= 42; i++) {
+        document.getElementById("d-" + i).style.visibility = "visible";
+    }
 
+    switch(currentMonth){
+
+        case 1:
+            start = 1;
+            end = 33;
+            break;
+
+        case 2:
+            start = 4;
+            end = 33;
+            break;
+
+        case 3:
+            start = 4;
+            end = 36;
+            break;
+
+        case 4:
+            start = 0;
+            end = 31;
+            break;
+
+        case 5:
+            start = 2;
+            end = 34;
+            break;
+
+        case 6:
+            start = 5;
+            end = 36;
+            break;
+
+        case 7:
+            start = 0;
+            end = 32;
+            break;
+
+        case 8:
+            start = 3;
+            end = 35;
+            break;
+
+        case 9:
+            start = 6;
+            end = 37;
+            break;
+
+        case 10:
+            start = 1;
+            end = 33;
+            break;
+
+        case 11:
+            start = 4;
+            end = 35;  
+            break;
+
+        case 12:
+            start = 6;
+            end = 38;
+            break;
+
+        }
+        removeExcessDays(start, end)
+}
+
+/**
+ * Removes every excess day that takes up space
+ * 
+ * @param {number} start Where we will stop removing the boxes at the beginning of the calender 
+ * @param {number} end Where we will stop removing the boxes at the end of the calender 
+ */
+function removeExcessDays(start, end){
+
+    for (let i = 1; i <= start; i++){
+        document.getElementById("d-" + i).style.visibility = "hidden";
+    }
+
+    for (let i = end; i <= 42; i++) {
+        document.getElementById("d-" + i).style.visibility = "hidden"
+        
+    }
+}
