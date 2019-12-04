@@ -1,18 +1,8 @@
+//
 // Functions to use from outside:
 // * setDates(month)
-//    - set dates in calender view for actual month
-//    - inputs:
-//      month - is a month number starts from 1 to 12
-
-// const holidays = [
-//     [],
-//     [],
-//     ...
-//     [
-//         { name: 'julafton', day: 24 },
-//         { name: 'jul', day: 25 },
-//     ]
-// ];
+//
+//--------------------------------
 
 const holidays = [
     [
@@ -48,25 +38,50 @@ const holidays = [
     ]
 ];
 
-function arrangeHolidays(month) {
-    console.log(holidays[month - 1]);
-    const lastDay = getNumberOfDays(month);
-    for (let i = 1; i<= lastDay; i++){
-        console.log(i);
-    }
-}
-
-
-
 let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
 setDates(currentMonth);
 setMonthName(currentMonth);
 setArrowsVisibility(currentMonth);
-
 checkExcessDays(currentMonth);
-
 arrangeHolidays(currentMonth);
 
+/**
+ * clean all holidays in calender view first,
+ * fill in holidays from array holiday to calender view
+ * @param month - is a month number starts from 1 to 12
+ */
+function arrangeHolidays(month) {
+    console.log('holidays of the month', holidays[month - 1]);
+    // Clean holidays in all cells
+    for (let i = 1; i <= 42; i++) {
+        const cellElem = document.getElementById('d-' + i);
+        const eventBoxElem = cellElem.getElementsByClassName('event-box')[0];
+        eventBoxElem.innerHTML = '';
+    }
+
+    // Fill in holidays where is needed
+    const thisMonthHolidays = holidays[month - 1];
+    for (let i = 0; i < thisMonthHolidays.length; i++) {
+        const holiday = thisMonthHolidays[i];
+
+        // <div class="holiday">JUL</div>
+        const divElem = document.createElement('div');
+        divElem.setAttribute('class', 'holiday');
+        divElem.innerText = holiday.name;
+
+        // put into day cell
+        const firstDay = getFirstDayOfMonth(month);
+        const cellElem = document.getElementById('d-' + (holiday.day + firstDay - 1).toString());
+        const eventBoxElem = cellElem.getElementsByClassName('event-box')[0];
+        eventBoxElem.append(divElem);
+    }
+
+}
+
+/**
+ * Set dates in calender view for actual month
+ * @param month - is a month number starts from 1 to 12
+ */
 function setDates(month) {
     const lastCellInCalender = 42;
 
@@ -111,7 +126,6 @@ function setDates(month) {
         dateElem.innerText = '';
         console.log('clean', d);
     }
-
 }
 
 function getFirstDayOfMonth(month) {
@@ -150,7 +164,8 @@ function monthBack() {
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
 
-    checkExcessDays(currentMonth)
+    checkExcessDays(currentMonth);
+    arrangeHolidays(currentMonth);
 }
 
 function monthForward() {
@@ -162,7 +177,8 @@ function monthForward() {
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
 
-    checkExcessDays(currentMonth)
+    checkExcessDays(currentMonth);
+    arrangeHolidays(currentMonth);
 }
 
 /**
@@ -249,13 +265,11 @@ function checkExcessDays(){
  * @param {number} end Where we will stop removing the boxes at the end of the calender
  */
 function removeExcessDays(start, end){
-
     for (let i = 1; i <= start; i++){
         document.getElementById("d-" + i).style.visibility = "hidden";
     }
 
     for (let i = end; i <= 42; i++) {
         document.getElementById("d-" + i).style.visibility = "hidden"
-
     }
 }
