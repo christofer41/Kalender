@@ -19,6 +19,8 @@ const holidays = [
         { name: 'Nyårsdagen', day: 1 },
         { name: 'Trettondedag jul', day: 6 },
     ],
+    [],
+    [],
     [
         { name: 'Långfredagen', day: 19 },
         { name: 'Påskdagen', day: 21 },
@@ -33,6 +35,10 @@ const holidays = [
         { name: 'Pingstdagen', day: 9 },
         { name: 'Midsommar', day: 22 },
     ],
+    [],
+    [],
+    [],
+    [],
     [
         { name: 'Alla helgons dag', day: 2 },
     ],
@@ -42,15 +48,22 @@ const holidays = [
     ]
 ];
 
-function arrangeHolidays() {
-
+function arrangeHolidays(month) {
+    console.log(holidays[month - 1]);
+    const lastDay = getNumberOfDays(month);
+    for (let i = 1; i<= lastDay; i++){
+        console.log(i);
+    }
 }
+
 
 
 let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
 setDates(currentMonth);
 setMonthName(currentMonth);
 setArrowsVisibility(currentMonth);
+
+arrangeHolidays(currentMonth);
 
 function setDates(month) {
     const lastCellInCalender = 42;
