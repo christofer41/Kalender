@@ -9,39 +9,48 @@
 
 #calender {
     width: 100%;
+    /* to keep readible view set min-width*/
     min-width: 800px;
 }
 
 #calender .row {
+    /* to arrange 7-day cells along full width of the row*/
     display: flex;
     width: 100%;
 }
 
 .month-day {
+    /* 1/7 of the whole row width*/
     flex-basis: 14.29%;
     height: 100px;
     background-color: white;
     border: 1px solid #c9c9c9;
     margin: 3px 3px;
     padding: 6px 6px;
+    /* use flex-box to align children*/
     display: flex;
+    /* make all child element like 'events' and 'holidays' wrapable to the next row inside the cell */
     flex-wrap: wrap;
 }
 
 .month-day .date {
     font-size: 1.2rem;
+    /* USE 50% of cell width for date */
     flex-basis: 50%;
     font-weight: bold;
 }
 
 .month-day .event-box {
+    /* use 100% of cell width for event */
     flex-basis: 100%;
 }
 
 .month-day .todo {
+    /* use 50% of cell width for to-do amount in this day */
     flex-basis: 50%;
 }
 
+/* badge-emblem to show amount of to-dos*/
 .month-day .todo .badge {
     background-color: #5b93df;
     color: white;
@@ -52,10 +61,12 @@
     font-size: 1.2rem;
 }
 
+/* make weekend look different */
 .weekend {
     background-color: #ffd2c9;
 }
 
+/* styling holiday info in a cell */
 .holiday {
     background-color: #ff87be;
     color: white;
@@ -64,6 +75,7 @@
     padding: 1px 3px;
 }
 
+/* styling holiday event info in a cell */
 .event {
     background-color: #fff1cc;
     margin-top: 1px;
