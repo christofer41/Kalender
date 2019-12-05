@@ -1,16 +1,82 @@
+//
 // Functions to use from outside:
 // * setDates(month)
-//    - set dates in calender view for actual month
-//    - inputs:
-//      month - is a month number starts from 1 to 12
+//
+//--------------------------------
+
+const holidays = [
+    [
+        { name: 'Nyårsdagen', day: 1 },
+        { name: 'Trettondedag jul', day: 6 },
+    ],
+    [],
+    [],
+    [
+        { name: 'Långfredagen', day: 19 },
+        { name: 'Påskdagen', day: 21 },
+        { name: 'Annandag påsk', day: 22 },
+    ],
+    [
+        { name: 'Första maj', day: 1 },
+        { name: 'Kristi himmelfärdsdag', day: 30 },
+    ],
+    [
+        { name: 'Sveriges nationaldag', day: 6 },
+        { name: 'Pingstdagen', day: 9 },
+        { name: 'Midsommar', day: 22 },
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+        { name: 'Alla helgons dag', day: 2 },
+    ],
+    [
+        { name: 'Juldagen', day: 25 },
+        { name: 'Annandag jul', day: 26 },
+    ]
+];
 
 let currentMonth = new Date().getMonth() + 1; // 1, 2, 3....12
 setDates(currentMonth);
 setMonthName(currentMonth);
 setArrowsVisibility(currentMonth);
-
 checkExcessDays(currentMonth);
+arrangeHolidays(currentMonth);
 
+/**
+ * clean all holidays in calender view first,
+ * fill in holidays from array holiday to calender view
+ * @param month - is a month number starts from 1 to 12
+ */
+function arrangeHolidays(month) {
+    console.log('holidays of the month', holidays[month - 1]);
+    // Clean holidays in all cells
+    for (let i = 1; i <= 42; i++) {
+        const cellElem = document.getElementById('d-' + i);
+        const eventBoxElem = cellElem.getElementsByClassName('event-box')[0];
+        eventBoxElem.innerHTML = '';
+    }
+
+    // Fill in holidays where is needed
+    const thisMonthHolidays = holidays[month - 1];
+    for (let i = 0; i < thisMonthHolidays.length; i++) {
+        const holiday = thisMonthHolidays[i];
+
+        // <div class="holiday">JUL</div>
+        const divElem = document.createElement('div');
+        divElem.setAttribute('class', 'holiday');
+        divElem.innerText = holiday.name;
+
+        // put into day cell
+        const firstDay = getFirstDayOfMonth(month);
+        const cellElem = document.getElementById('d-' + (holiday.day + firstDay - 1).toString());
+        const eventBoxElem = cellElem.getElementsByClassName('event-box')[0];
+        eventBoxElem.append(divElem);
+    }
+
+  
 window.addEventListener("load", onLoadFunction)
 
 /**
@@ -26,6 +92,12 @@ function onLoadFunction(){
 }
 
 
+}
+
+/**
+ * Set dates in calender view for actual month
+ * @param month - is a month number starts from 1 to 12
+ */
 
 function setDates(month) {
     const lastCellInCalender = 42;
@@ -71,7 +143,6 @@ function setDates(month) {
         dateElem.innerText = '';
         // console.log('clean', d);
     }
-
 }
 
 function getFirstDayOfMonth(month) {
@@ -110,11 +181,14 @@ function monthBack() {
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
 
+
     checkExcessDays(currentMonth)
 
     selectedMonthArray = currentMonth;
     selectedDateArray = selectedMonthArray + "-" + "7";
 
+    checkExcessDays(currentMonth);
+    arrangeHolidays(currentMonth);
 }
 
 function monthForward() {
@@ -128,6 +202,9 @@ function monthForward() {
 
     checkExcessDays(currentMonth)
     selectedMonthArray = currentMonth;
+
+    checkExcessDays(currentMonth);
+    arrangeHolidays(currentMonth);
 }
 
 /**
@@ -195,7 +272,7 @@ function checkExcessDays(){
 
         case 11:
             start = 4;
-            end = 35;  
+            end = 35;
             break;
 
         case 12:
@@ -209,19 +286,17 @@ function checkExcessDays(){
 
 /**
  * Removes every excess day that takes up space
- * 
- * @param {number} start Where we will stop removing the boxes at the beginning of the calender 
- * @param {number} end Where we will stop removing the boxes at the end of the calender 
+ *
+ * @param {number} start Where we will stop removing the boxes at the beginning of the calender
+ * @param {number} end Where we will stop removing the boxes at the end of the calender
  */
 function removeExcessDays(start, end){
-
     for (let i = 1; i <= start; i++){
         document.getElementById("d-" + i).style.visibility = "hidden";
     }
 
     for (let i = end; i <= 42; i++) {
         document.getElementById("d-" + i).style.visibility = "hidden"
-        
     }
 }
 
