@@ -22,7 +22,7 @@
 .month-day {
     /* 1/7 of the whole row width*/
     flex-basis: 14.29%;
-    height: 100px;
+    height: 88px;
     background-color: white;
     border: 1px solid #c9c9c9;
     margin: 3px 3px;

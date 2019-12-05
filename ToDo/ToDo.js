@@ -5,6 +5,16 @@ window.addEventListener("load", printTime)
 window.addEventListener("load", loadPage)
 window.addEventListener("load", loadExistingTodo)
 
+let selectedDateArray;
+let selectedMonthArray = currentMonth;
+let selectedDayArray
+
+/**
+ * The list of all todos
+ */
+todoList = {}
+
+
 /**
  * When the page loads
  */
@@ -35,8 +45,9 @@ function loadPage() {
  * We load existing todos
  */
 function loadExistingTodo() {
-    if (localStorage.currentToDo) {
-        toDoText.innerHTML = JSON.parse(localStorage.currentToDo);
+    if (localStorage.allArrays) {
+        console.log(JSON.parse(localStorage.allArrays));
+        todoList = JSON.parse(localStorage.allArrays);
     }
 }
 
@@ -45,13 +56,20 @@ function loadExistingTodo() {
  */
 function addTodoPrompt() {
 
-    textPromptDiv.style.display = "block";
+    if (selectedDateArray != undefined){
+        
+        textPromptDiv.style.display = "block";
+    
+        promptDivAdd.style.display = "block";
+        promptDivRemove.style.display = "none";
+        promptDivChange.style.display = "none";
+    
+        promptButton[0].addEventListener("click", addTodo)
+    }
+    else{
+        alert("Please select a date!");
+    }
 
-    promptDivAdd.style.display = "block";
-    promptDivRemove.style.display = "none";
-    promptDivChange.style.display = "none";
-
-    promptButton[0].addEventListener("click", addTodo)
 }
 
 /**
@@ -59,13 +77,20 @@ function addTodoPrompt() {
  */
 function removeTodoPrompt() {
 
-    textPromptDiv.style.display = "block";
+    if (selectedDateArray != undefined){
 
-    promptDivAdd.style.display = "none";
-    promptDivRemove.style.display = "block"
-    promptDivChange.style.display = "none";
+        textPromptDiv.style.display = "block";
+    
+        promptDivAdd.style.display = "none";
+        promptDivRemove.style.display = "block"
+        promptDivChange.style.display = "none";
+    
+        promptButton[1].addEventListener("click", removeTodo)
+    }
+    else{
+        alert("Please select a date");
+    }
 
-    promptButton[1].addEventListener("click", removeTodo)
 }
 
 /**
@@ -73,13 +98,20 @@ function removeTodoPrompt() {
  */
 function changeTodoPrompt() {
 
-    textPromptDiv.style.display = "block";
+    if (selectedDateArray != undefined){
 
-    promptDivAdd.style.display = "none";
-    promptDivRemove.style.display = "none"
-    promptDivChange.style.display = "block";
+        textPromptDiv.style.display = "block";
+    
+        promptDivAdd.style.display = "none";
+        promptDivRemove.style.display = "none"
+        promptDivChange.style.display = "block";
+    
+        promptButton[2].addEventListener("click", changeTodo)
+    }
+    else{
+        alert("Please select a date");
+    }
 
-    promptButton[2].addEventListener("click", changeTodo)
 }
 
 /**
@@ -89,8 +121,15 @@ function addTodo() {
     let textInput = textPrompt.value;
     toDoText.innerHTML = textInput;
     textPromptDiv.style.display = "none";
+ 
+    if (!todoList[selectedDateArray]) {
+        todoList[selectedDateArray] = []
+    }
 
-    localStorage.currentToDo = JSON.stringify(textInput);
+    todoList[selectedDateArray].push(textInput);
+    console.log(todoList);
+
+    localStorage.allArrays = JSON.stringify(todoList);
 
     textPrompt.value = "";
 }
@@ -101,20 +140,34 @@ function addTodo() {
 function removeTodo() {
     textPromptDiv.style.display = "none";
     toDoText.innerHTML = "";
+
+    todoList[selectedDateArray] = null;
+    console.log(todoList);
+
+    localStorage.allArrays = JSON.stringify(todoList);
 }
 
 /**
  * When the user has decided to change the Todo and presses the button
  */
 function changeTodo() {
-    let textInput = changeTextPrompt.value;
-    toDoText.innerHTML = textInput;
-    textPromptDiv.style.display = "none";
+    if (todoList[selectedDateArray]) {
 
-    localStorage.currentToDo = JSON.stringify(textInput);
-
-    textPrompt.value = "";
+        let textInput = changeTextPrompt.value;
+        toDoText.innerHTML = textInput;
+        textPromptDiv.style.display = "none";
+    
+        todoList[selectedDateArray] = []
+        todoList[selectedDateArray].push(textInput);
+        console.log(todoList);
+    
+        localStorage.allArrays = JSON.stringify(todoList);
+    
+        textPrompt.value = "";
+    
+    }
 }
+
 
 /**
  * function to print out the day of the week
@@ -178,3 +231,4 @@ function checkTime(i) {
     if (i < 10) { i = '0' + i }
     return i
 }
+

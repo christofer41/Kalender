@@ -76,12 +76,29 @@ function arrangeHolidays(month) {
         eventBoxElem.append(divElem);
     }
 
+  
+window.addEventListener("load", onLoadFunction)
+
+/**
+ * What happens when we load the page
+ */
+function onLoadFunction(){
+    changeMousePointer()
+    allDays = document.getElementsByClassName("month-day");
+    
+    for (let i = 0; i < allDays.length; i++) {
+        allDays[i].addEventListener("click", selectDiv)
+    }
+}
+
+
 }
 
 /**
  * Set dates in calender view for actual month
  * @param month - is a month number starts from 1 to 12
  */
+
 function setDates(month) {
     const lastCellInCalender = 42;
 
@@ -104,13 +121,13 @@ function setDates(month) {
         //get html-element with day number
         const dateElem = dayElem.getElementsByClassName('date')[0];
         dateElem.innerText = '';
-        console.log('clean', d);
+        // console.log('clean', d);
     }
 
     //fill in number of day of the month to cells step by step
     let i = 1;
     for (let day = firstDay; day < firstDay + numberOfDays; day++) {
-        console.log(day, i);
+        // console.log(day, i);
         const dayElem = document.getElementById('d-' + day.toString());
         const dateElem = dayElem.getElementsByClassName('date')[0];
         // console.log(dayElem);
@@ -124,7 +141,7 @@ function setDates(month) {
         const dayElem = document.getElementById('d-' + d.toString());
         const dateElem = dayElem.getElementsByClassName('date')[0];
         dateElem.innerText = '';
-        console.log('clean', d);
+        // console.log('clean', d);
     }
 }
 
@@ -164,6 +181,12 @@ function monthBack() {
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
 
+
+    checkExcessDays(currentMonth)
+
+    selectedMonthArray = currentMonth;
+    selectedDateArray = selectedMonthArray + "-" + "7";
+
     checkExcessDays(currentMonth);
     arrangeHolidays(currentMonth);
 }
@@ -176,6 +199,9 @@ function monthForward() {
     setDates(currentMonth);
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
+
+    checkExcessDays(currentMonth)
+    selectedMonthArray = currentMonth;
 
     checkExcessDays(currentMonth);
     arrangeHolidays(currentMonth);
@@ -271,5 +297,41 @@ function removeExcessDays(start, end){
 
     for (let i = end; i <= 42; i++) {
         document.getElementById("d-" + i).style.visibility = "hidden"
+    }
+}
+
+
+/**
+ * When the user clicks on a calendar date
+ * @param {Clicked} event 
+ */
+function selectDiv(event){
+
+    for (let i = 0; i < allDays.length; i++) {
+        allDays[i].style.background = "none";
+    }
+    if(event.target.className == "date"){
+
+        var target = event.target;
+        var parent = target.parentElement;
+
+        parent.style.background = 'lightgray';
+        selectedDayArray = event.target.innerHTML;
+        console.log(selectedDayArray);
+
+        selectedDateArray = selectedMonthArray + "-" + selectedDayArray;
+    }    
+
+}
+
+/**
+ * Will change the mouse pointer when holding over the dates
+ */
+function changeMousePointer(){
+    allDates = document.getElementsByClassName("date");
+    
+    for (let i = 0; i < allDates.length; i++) {
+        allDates[i].style.cursor = "hand" ;
+        allDates[i].style.cursor = "pointer" ;
     }
 }
