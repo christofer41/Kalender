@@ -31,13 +31,12 @@ header {
 }
 
 aside {
-    border: 2px solid blue;
+    border-right: 2px solid black;
     grid-column: 1;
     grid-row: 2 / 4;
 }
 
 main {
-    border: 2px solid green;
     grid-column: 2 / 4;
     grid-row: 2 / 4;
 }
