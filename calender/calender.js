@@ -45,6 +45,17 @@ setMonthName(currentMonth);
 setArrowsVisibility(currentMonth);
 checkExcessDays(currentMonth);
 arrangeHolidays(currentMonth);
+arrangeToDos(currentMonth);
+
+function arrangeToDos(month) {
+    // Clean todos badges in all cells
+    for (let i = 1; i <= 42; i++) {
+        const cellElem = document.getElementById('d-' + i);
+        const toDoElem = cellElem.getElementsByClassName('todo')[0];
+        const badgeElem = toDoElem.getElementsByClassName('badge')[0];
+        badgeElem.style.display = 'none';
+    }
+}
 
 /**
  * clean all holidays in calender view first,
@@ -292,7 +303,7 @@ function checkExcessDays(){
         //We put an interval so that the other things that this function need could load
         window.setTimeout(function(){
             loadExistingBadges(start, end);
-            },100);
+            },250);
 }
 
 /**
@@ -372,7 +383,8 @@ function changeMousePointer(){
 function showTodoInBox(){
     
     //If the date have an todo
-    if (todoList["todo"][selectedDateArray] || todoList["todo"][selectedDateArray] != undefined){
+    const array =  todoList["todo"]
+    if (array != null && array[selectedDateArray] != null){
         for (let i = 0; i < todoList["todo"][selectedDateArray].length; i++) {
             let txt = document.createElement("p");
             txt.innerHTML = todoList["todo"][selectedDateArray][i];
