@@ -1,14 +1,14 @@
-window.addEventListener('load', loadmonthImgs)
-window.addEventListener('load', loadSeasonImgs)
-
 const date = new Date()
 const month = date.getMonth() + 1
 let monthImgs = document.getElementsByClassName('monthImgs')
 let seasonImgs = document.getElementsByClassName('seasonImgs')
 
+window.addEventListener('load', function () { loadmonthImgs(month) })
+window.addEventListener('load', function () { loadSeasonImgs(month) })
+
 /**
  * function to make all imgs for each season display as none if not used
- * 
+ *
  */
 function makeSeasonImgInvisible() {
 
@@ -20,10 +20,10 @@ function makeSeasonImgInvisible() {
 
 /**
  * function to load the specific img to use for chosen season
- * 
+ *
  */
 
-function loadSeasonImgs() {
+function loadSeasonImgs(month) {
 
     switch (month) {
         case 12 || 1 || 2:
@@ -67,7 +67,7 @@ function makeImgsInvisible() {
  *
  */
 
-function loadmonthImgs() {
+function loadmonthImgs(month) {
     switch (month) {
 
         case 1:

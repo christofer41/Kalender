@@ -183,14 +183,15 @@ function monthBack() {
     setMonthName(currentMonth);
     setArrowsVisibility(currentMonth);
 
-
-    checkExcessDays(currentMonth)
+    checkExcessDays(currentMonth);
 
     selectedMonthArray = currentMonth;
     selectedDateArray = selectedMonthArray + "-" + "7";
 
     checkExcessDays(currentMonth);
     arrangeHolidays(currentMonth);
+    loadSeasonImgs(currentMonth);
+    loadmonthImgs(currentMonth);
 }
 
 function monthForward() {
@@ -207,6 +208,8 @@ function monthForward() {
 
     checkExcessDays(currentMonth);
     arrangeHolidays(currentMonth);
+    loadSeasonImgs(currentMonth);
+    loadmonthImgs(currentMonth);
 }
 
 /**
