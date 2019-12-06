@@ -70,7 +70,8 @@ function loadExistingBadges(start, end){
     let y = 0;
     for (let i = start; i <= end; i++) {
         y++;
-        if(todoList["badge"][currentMonth.toString() + "-" + y.toString()] != null) {
+        const array =  todoList["badge"]
+        if (array != null &&  array[currentMonth.toString() + "-" + y.toString()] != null) {
         allTheBadges[i].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
         }
     }
@@ -165,7 +166,7 @@ function addTodo() {
 
     textPromptDiv.style.display = "none";
  
-    if (!todoList["todo"][selectedDateArray]) {
+    if (!todoList["todo"][selectedDateArray] || todoList["todo"][selectedDateArray] == undefined) {
         todoList["todo"][selectedDateArray] = []
         todoList["badge"][selectedDateArray] = []
     }

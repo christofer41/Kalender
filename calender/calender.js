@@ -369,7 +369,7 @@ function changeMousePointer(){
 function showTodoInBox(){
     
     //If the date have an todo
-    if (todoList["todo"][selectedDateArray]){
+    if (todoList["todo"][selectedDateArray] || todoList["todo"][selectedDateArray] != undefined){
         for (let i = 0; i < todoList["todo"][selectedDateArray].length; i++) {
             let txt = document.createElement("p");
             txt.innerHTML = todoList["todo"][selectedDateArray][i];
