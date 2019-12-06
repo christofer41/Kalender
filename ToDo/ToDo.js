@@ -70,7 +70,7 @@ function loadExistingBadges(start, end){
     let y = 0;
     for (let i = start; i <= end; i++) {
         y++;
-        if(todoList["badge"][currentMonth.toString() + "-" + y.toString()]) {
+        if(todoList["badge"][currentMonth.toString() + "-" + y.toString()] != null) {
         allTheBadges[i].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
         }
     }
@@ -194,12 +194,12 @@ function removeTodo() {
     removeTodoInBox();
 
     todoList["todo"][selectedDateArray] = null;
-    todoList["badge"][selectedDateArray] = []
+    todoList["badge"][selectedDateArray] = null;
     console.log(todoList);
 
     badgeNumber.innerHTML = "0";
 
-    todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
+
     localStorage.allArrays = JSON.stringify(todoList);
 }
 
