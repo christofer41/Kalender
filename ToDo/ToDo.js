@@ -5,14 +5,20 @@ window.addEventListener("load", printTime)
 window.addEventListener("load", loadPage)
 window.addEventListener("load", loadExistingTodo)
 
+//The selected array
 let selectedDateArray;
+//The selected Month for the array
 let selectedMonthArray = currentMonth;
+//The selected Day for the array
 let selectedDayArray
 
 /**
  * The list of all todos
  */
-todoList = {}
+todoList = {
+    todo: {},
+    badge: {}
+}
 
 
 /**
@@ -29,7 +35,6 @@ function loadPage() {
 
     textPrompt = document.getElementById("textPrompt");
     changeTextPrompt = document.getElementById("changeTextPrompt");
-    toDoText = document.getElementById("toDoText");
 
     promptDivAdd = document.getElementById("addPromptDiv");
     promptDivRemove = document.getElementById("removePromptDiv");
@@ -38,6 +43,7 @@ function loadPage() {
     addTodoButton.addEventListener("click", addTodoPrompt);
     removeTodoButton.addEventListener("click", removeTodoPrompt);
     changeTodoButton.addEventListener("click", changeTodoPrompt);
+
 }
 
 
@@ -48,6 +54,25 @@ function loadExistingTodo() {
     if (localStorage.allArrays) {
         console.log(JSON.parse(localStorage.allArrays));
         todoList = JSON.parse(localStorage.allArrays);
+    }
+}
+
+/**
+ * We load existing badges
+ * @param {number} start When the days start
+ * @param {number} end  When the days end
+ */
+function loadExistingBadges(start, end){
+    let allTheBadges = document.getElementsByClassName("badge");
+    for (let p = start; p < end; p++) {
+        allTheBadges[p].innerHTML = "0"; 
+    }
+    let y = 0;
+    for (let i = start; i <= end; i++) {
+        y++;
+        if(todoList["badge"][currentMonth.toString() + "-" + y.toString()]) {
+        allTheBadges[i].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
+        }
     }
 }
 
@@ -77,16 +102,26 @@ function addTodoPrompt() {
  */
 function removeTodoPrompt() {
 
+    //If a date has been selected
     if (selectedDateArray != undefined){
 
-        textPromptDiv.style.display = "block";
-    
-        promptDivAdd.style.display = "none";
-        promptDivRemove.style.display = "block"
-        promptDivChange.style.display = "none";
-    
-        promptButton[1].addEventListener("click", removeTodo)
+        //If the date doesn't have an todo
+        if (!todoList["todo"][selectedDateArray]){
+            alert("This date doesn't have an todo");
+            textPromptDiv.style.display = "none";
+        }
+        else {
+            textPromptDiv.style.display = "block";
+        
+            promptDivAdd.style.display = "none";
+            promptDivRemove.style.display = "block"
+            promptDivChange.style.display = "none";
+        
+            promptButton[1].addEventListener("click", removeTodo)
+        }
+
     }
+    //If a date hasn't been selected
     else{
         alert("Please select a date");
     }
@@ -100,14 +135,22 @@ function changeTodoPrompt() {
 
     if (selectedDateArray != undefined){
 
-        textPromptDiv.style.display = "block";
+        //If the date doesn't have an todo
+        if (!todoList["todo"][selectedDateArray]){
+            alert("This date doesn't have an todo");
+            textPromptDiv.style.display = "none";
+        }
+        else {
+            textPromptDiv.style.display = "block";
     
-        promptDivAdd.style.display = "none";
-        promptDivRemove.style.display = "none"
-        promptDivChange.style.display = "block";
+            promptDivAdd.style.display = "none";
+            promptDivRemove.style.display = "none"
+            promptDivChange.style.display = "block";
     
-        promptButton[2].addEventListener("click", changeTodo)
+            promptButton[2].addEventListener("click", changeTodo)
+        }
     }
+
     else{
         alert("Please select a date");
     }
@@ -119,17 +162,26 @@ function changeTodoPrompt() {
  */
 function addTodo() {
     let textInput = textPrompt.value;
-    toDoText.innerHTML = textInput;
+
     textPromptDiv.style.display = "none";
  
-    if (!todoList[selectedDateArray]) {
-        todoList[selectedDateArray] = []
+    if (!todoList["todo"][selectedDateArray]) {
+        todoList["todo"][selectedDateArray] = []
+        todoList["badge"][selectedDateArray] = []
     }
 
-    todoList[selectedDateArray].push(textInput);
+    todoList["todo"][selectedDateArray].push(textInput);
     console.log(todoList);
+    
+    removeTodoInBox();
+    showTodoInBox();
+    
+    badgeNumber.innerHTML++;
+
+    todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
 
     localStorage.allArrays = JSON.stringify(todoList);
+
 
     textPrompt.value = "";
 }
@@ -139,11 +191,15 @@ function addTodo() {
  */
 function removeTodo() {
     textPromptDiv.style.display = "none";
-    toDoText.innerHTML = "";
+    removeTodoInBox();
 
-    todoList[selectedDateArray] = null;
+    todoList["todo"][selectedDateArray] = null;
+    todoList["badge"][selectedDateArray] = []
     console.log(todoList);
 
+    badgeNumber.innerHTML = "0";
+
+    todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
     localStorage.allArrays = JSON.stringify(todoList);
 }
 
@@ -151,21 +207,26 @@ function removeTodo() {
  * When the user has decided to change the Todo and presses the button
  */
 function changeTodo() {
-    if (todoList[selectedDateArray]) {
-
+    if (todoList["todo"][selectedDateArray]) {
         let textInput = changeTextPrompt.value;
-        toDoText.innerHTML = textInput;
+
         textPromptDiv.style.display = "none";
     
-        todoList[selectedDateArray] = []
-        todoList[selectedDateArray].push(textInput);
+        todoList["todo"][selectedDateArray] = []
+        todoList["badge"][selectedDateArray] = []
+        todoList["todo"][selectedDateArray].push(textInput);
         console.log(todoList);
     
+        removeTodoInBox();
+        showTodoInBox();
+
+        badgeNumber.innerHTML = "1";
+    
+        todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
         localStorage.allArrays = JSON.stringify(todoList);
     
         textPrompt.value = "";
-    
-    }
+    } 
 }
 
 

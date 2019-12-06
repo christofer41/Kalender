@@ -4,6 +4,7 @@
 //
 //--------------------------------
 
+
 const holidays = [
     [
         { name: 'Nyårsdagen', day: 1 },
@@ -85,6 +86,7 @@ window.addEventListener("load", onLoadFunction)
 function onLoadFunction(){
     changeMousePointer()
     allDays = document.getElementsByClassName("month-day");
+    window.addEventListener("click", resetTheDivColor, useCapture = true);
     
     for (let i = 0; i < allDays.length; i++) {
         allDays[i].addEventListener("click", selectDiv)
@@ -281,7 +283,13 @@ function checkExcessDays(){
             break;
 
         }
+
+        removeTodoInBox()
         removeExcessDays(start, end)
+        //We put an interval so that the other things that this function need could load
+        window.setTimeout(function(){
+            loadExistingBadges(start, end);
+            },100);
 }
 
 /**
@@ -306,22 +314,41 @@ function removeExcessDays(start, end){
  * @param {Clicked} event 
  */
 function selectDiv(event){
+    let target = event.target;
+    let parent = target.parentElement;
 
-    for (let i = 0; i < allDays.length; i++) {
-        allDays[i].style.background = "none";
-    }
+    resetTheDivColor();
     if(event.target.className == "date"){
 
-        var target = event.target;
-        var parent = target.parentElement;
+        removeTodoInBox();
+
+
+        badgeNumber = parent.querySelector(".badge");
 
         parent.style.background = 'lightgray';
         selectedDayArray = event.target.innerHTML;
         console.log(selectedDayArray);
 
         selectedDateArray = selectedMonthArray + "-" + selectedDayArray;
-    }    
 
+        showTodoInBox();
+    }    
+    else{
+        resetTheDivColor();
+    }
+}
+
+window
+
+function resetTheDivColor(){
+    let weekend = document.getElementsByClassName("weekend");
+
+    for (let i = 0; i < allDays.length; i++) {
+        allDays[i].style.background = "none";
+    }
+    for (let i = 0; i < weekend.length; i++) {
+        weekend[i].style.background = "#FFD2C9";
+    }
 }
 
 /**
@@ -333,5 +360,39 @@ function changeMousePointer(){
     for (let i = 0; i < allDates.length; i++) {
         allDates[i].style.cursor = "hand" ;
         allDates[i].style.cursor = "pointer" ;
+    }
+}
+
+/**
+ * This goes through all todos for the date and puts them in the box
+ */
+function showTodoInBox(){
+    
+    //If the date have an todo
+    if (todoList["todo"][selectedDateArray]){
+        for (let i = 0; i < todoList["todo"][selectedDateArray].length; i++) {
+            let txt = document.createElement("p");
+            txt.innerHTML = todoList["todo"][selectedDateArray][i];
+            txt.className = "textInTodoBox";
+            toDoHolder.appendChild(txt);
+        }   
+    }
+    else{
+        removeTodoInBox();
+    }
+}
+
+/**
+ * This removes everything inside of the box
+ */
+function removeTodoInBox(){
+    let txt =  document.querySelectorAll(".textInTodoBox");
+
+        //If the box has content
+    if (txt){
+        for (let i = 0; i < txt.length; i++) {
+            txt[i].remove();
+    
+        }   
     }
 }
