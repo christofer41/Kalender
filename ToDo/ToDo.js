@@ -65,14 +65,20 @@ function loadExistingTodo() {
 function loadExistingBadges(start, end){
     let allTheBadges = document.getElementsByClassName("badge");
     for (let p = start; p < end; p++) {
-        allTheBadges[p].innerHTML = "0"; 
+        allTheBadges[p].innerHTML = "0";
+        allTheBadges[p].style.display = "none";
     }
     let y = 0;
     for (let i = start; i <= end; i++) {
         y++;
         const array =  todoList["badge"]
         if (array != null &&  array[currentMonth.toString() + "-" + y.toString()] != null) {
-        allTheBadges[i].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
+            allTheBadges[i].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
+            console.log(allTheBadges[i].innerHTML);
+            allTheBadges[i].style.display = "inline-block";
+            if (todoList["badge"][currentMonth + "-" + y].length < 1) {
+                allTheBadges[i].style.display = "none";
+            }
         }
     }
 }
@@ -165,8 +171,15 @@ function addTodo() {
     let textInput = textPrompt.value;
 
     textPromptDiv.style.display = "none";
- 
-    if (!todoList["todo"][selectedDateArray] || todoList["todo"][selectedDateArray] == undefined) {
+
+   if (!todoList["todo"]) {
+        todoList["todo"] = {}
+    }
+   if (!todoList["badge"]) {
+       todoList["badge"] = {}
+   }
+    const array =  todoList["todo"]
+    if (array[selectedDateArray] == null) {
         todoList["todo"][selectedDateArray] = []
         todoList["badge"][selectedDateArray] = []
     }
@@ -178,6 +191,7 @@ function addTodo() {
     showTodoInBox();
     
     badgeNumber.innerHTML++;
+    badgeNumber.style.display = 'inline-block';
 
     todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
 
@@ -199,6 +213,7 @@ function removeTodo() {
     console.log(todoList);
 
     badgeNumber.innerHTML = "0";
+    badgeNumber.style.display = 'none';
 
 
     localStorage.allArrays = JSON.stringify(todoList);
