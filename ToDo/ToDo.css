@@ -9,12 +9,20 @@ aside>* {
     border: 2px solid black;
     width: 100%;
     height: 10rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 #toDoHolder>* {
     /*Centrera*/
     display: flex;
     justify-content: center;
+}
+
+.textInTodoBox{
+    /*Add a little space between the todos*/
+    margin: 0.1rem auto;
 }
 
 #textPromptDiv {
