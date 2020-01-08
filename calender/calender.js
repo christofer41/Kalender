@@ -427,9 +427,6 @@ function theCurrentDateTodo(){
     
             badgeNumber.innerHTML++;
             badgeNumber.style.display = 'inline-block';
-            todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
-
-            localStorage.allArrays = JSON.stringify(todoList);
         }   
     }
 }
