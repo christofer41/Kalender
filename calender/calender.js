@@ -425,8 +425,6 @@ function theCurrentDateTodo(){
  
             txt.addEventListener("click", clickTheToDo);   
     
-
-            
             badgeNumber.innerHTML++;
             badgeNumber.style.display = 'inline-block';
             todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
