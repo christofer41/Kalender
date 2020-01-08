@@ -31,10 +31,12 @@ aside>* {
     border: 2px solid blue;
     background-color: rgb(179, 179, 179);
     position: absolute;
-    left: 15rem;
-    right: 15rem;
-    top: 10rem;
-    bottom: 10rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    min-width: 200px;
+    min-height: 250px;
     animation-name: fadeIn;
     animation-duration: 300ms;
     animation-timing-function: linear;
@@ -83,6 +85,7 @@ aside>* {
 
 #addPromptDiv {
     display: none;
+    /*min-width: 300px;*/
 }
 
 #removePromptDiv {
@@ -133,4 +136,11 @@ h3 {
 
 .cat-image {
     position: absolute;
+}
+
+.selected-todo-item {
+    background-color: darkorange;
+    color: white;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }

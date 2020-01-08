@@ -14,15 +14,9 @@ I den här uppgiften vi försokt att bygga ett verktyg (Kalender) där användar
  7. Skapade todos skall kopplas till kalender och visas med en siffra som representeras antal todos på en viss dag
  8. Spara todos i local storage och visa dessa vid omladdning av sidan
  9. Användaren skall kunna ändra en todo
- 10. Användaren skall kunna växa till andra månader i kalendervyn
- 11. Svenska helgdagar visas i kalendern
- 12. Användaren ska kunna markera en dag i kalendern vilket filtrerar todolistan på den valda dagen, det ska gå att avmarkera vald dag
+ 10. Svenska helgdagar visas i kalendern
  
- Det finns flera moment som vi skulle vilja göra battre, t.ex. det kanske finns buggar,
-  som verkar uppkomma på grund av att JS filerna inte laddas i rätt ordning.
-
-
- 
+  
 #### [GitHub Pages Demo](https://christofer41.github.io/Kalender/)
  
  Grupp 9:

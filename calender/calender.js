@@ -4,6 +4,7 @@
 //
 //--------------------------------
 
+var badgeNumber;
 
 const holidays = [
     [
@@ -13,26 +14,26 @@ const holidays = [
     [],
     [],
     [
-        { name: 'Långfredagen', day: 19 },
-        { name: 'Påskdagen', day: 21 },
-        { name: 'Annandag påsk', day: 22 },
+        { name: 'Långfredagen', day: 10 },
+        { name: 'Påskdagen', day: 12 },
+        { name: 'Annandag påsk', day: 13 },
     ],
     [
         { name: 'Första maj', day: 1 },
-        { name: 'Kristi himmelfärdsdag', day: 30 },
+        { name: 'Kristi himmelfärdsdag', day: 21 },
+        { name: 'Pingstdagen', day: 31 },
     ],
     [
         { name: 'Sveriges nationaldag', day: 6 },
-        { name: 'Pingstdagen', day: 9 },
-        { name: 'Midsommar', day: 22 },
+        { name: 'Midsommar', day: 20 },
     ],
-    [],
     [],
     [],
     [],
     [
-        { name: 'Alla helgons dag', day: 2 },
+        { name: 'Alla helgons dag', day: 31 },
     ],
+    [],
     [
         { name: 'Juldagen', day: 25 },
         { name: 'Annandag jul', day: 26 },
@@ -159,12 +160,12 @@ function setDates(month) {
 }
 
 function getFirstDayOfMonth(month) {
-    const firstDayOfMonth = [2, 5, 5, 1, 3, 6, 1, 4, 7, 2, 5, 7];
+    const firstDayOfMonth = [3, 6, 7, 3, 5, 1, 3, 6, 2, 4, 7, 2];
     return firstDayOfMonth[month-1]
 }
 
 function getNumberOfDays(month) {
-    const numberOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const numberOfDaysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     return numberOfDaysInMonth[month - 1]
 }
 
@@ -175,8 +176,8 @@ function setMonthName(month) {
 }
 
 function setArrowsVisibility(month) {
-    document.getElementById('calend-nav-btn-back').style.display = 'block';
-    document.getElementById('calend-nav-btn-forward').style.display = 'block';
+    document.getElementById('calend-nav-btn-back').style.display = 'none'; //'block';
+    document.getElementById('calend-nav-btn-forward').style.display = 'none'; //'block';
     if (currentMonth === 1) {
         document.getElementById('calend-nav-btn-back').style.display = 'none';
     }
@@ -328,31 +329,30 @@ function removeExcessDays(start, end){
  * @param {Clicked} event 
  */
 function selectDiv(event){
-    let target = event.target;
+    selectDivHandler(event.target);
+}
+
+function selectDivHandler(target) {
     let parent = target.parentElement;
 
     resetTheDivColor();
-    if(event.target.className == "date"){
-
+    if(target.className === "date"){
         removeTodoInBox();
-
 
         badgeNumber = parent.querySelector(".badge");
 
         parent.style.background = 'lightgray';
-        selectedDayArray = event.target.innerHTML;
+        selectedDayArray = target.innerHTML;
         console.log(selectedDayArray);
 
         selectedDateArray = selectedMonthArray + "-" + selectedDayArray;
 
         showTodoInBox();
-    }    
+    }
     else{
         resetTheDivColor();
     }
 }
-
-window
 
 function resetTheDivColor(){
     let weekend = document.getElementsByClassName("weekend");
@@ -393,7 +393,26 @@ function showTodoInBox(){
             toDoHolder.appendChild(txt);
             
             txt.addEventListener("click", clickTheToDo);
-        }   
+        }
+
+        /*
+        for (let i = 0; i < todoList["todo"][selectedDateArray].length; i++) {
+            const id = 'radioInTodoBox' + i;
+            const div = document.createElement('div');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.id = id;
+            input.name = 'todo-item';
+            input.checked = (i === 0);
+            const label = document.createElement('label');
+            label.for = id;
+            label.innerText = todoList["todo"][selectedDateArray][i];
+            div.appendChild(input);
+            div.appendChild(label);
+            toDoHolder.appendChild(div);
+        }
+       */
+
     }
     else{
         removeTodoInBox();
@@ -431,4 +450,6 @@ function theCurrentDateTodo(){
             txt.addEventListener("click", clickTheToDo);        
         }   
     }
+
+    selectToDoItem('textInTodoBox0');
 }

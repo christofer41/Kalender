@@ -23,6 +23,7 @@ todoList = {
     badge: {}
 }
 
+let chosenToDo;
 
 /**
  * When the page loads
@@ -48,8 +49,21 @@ function loadPage() {
     removeTodoButton.addEventListener("click", removeTodoPrompt);
     changeTodoButton.addEventListener("click", changeTodoPrompt);
 
-
+    clickCurrentDate();
+    selectToDoItem('textInTodoBox0');
 }
+
+function clickCurrentDate() {
+    const firstDay = getFirstDayOfMonth(currentMonth);
+    const day = new Date().getUTCDate();
+    const id = 'd-' + (firstDay + day - 1);
+    const div = document.getElementById(id);
+    const dateElems = div.getElementsByClassName('date');
+    if (dateElems && dateElems[0]) {
+        selectDivHandler(dateElems[0]);
+    }
+}
+
 
 
 /**
@@ -63,7 +77,7 @@ function loadExistingTodo() {
 }
 
 
-function clickTheToDo(event){
+function clickTheToDo_OLD(event){
 
     chosenToDo = event.target.id;
     let changeTheColor = document.getElementById(chosenToDo);
@@ -74,6 +88,24 @@ function clickTheToDo(event){
 
     changeTheColor.style.backgroundColor = "lightblue";
 }
+
+function clickTheToDo(event){
+    chosenToDo = event.target.id;
+    selectToDoItem(chosenToDo);
+}
+
+function selectToDoItem(id) {
+    const changeTheColor = document.getElementById(id);
+    if (changeTheColor == null) {
+        return;
+    }
+    for (let i = 0; i < textInTodoBoxClass.length; i++) {
+        textInTodoBoxClass[i].classList.remove('selected-todo-item');
+    }
+    changeTheColor.classList.add('selected-todo-item');
+    chosenToDo = id;
+}
+
 
 
 /**
@@ -90,13 +122,13 @@ function loadExistingBadges(start, end){
     let y = 0;
     for (let i = start; i <= end; i++) {
         y++;
-        const array =  todoList["badge"]
+        const array =  todoList["badge"];
         if (array != null &&  array[currentMonth.toString() + "-" + y.toString()] != null) {
-            allTheBadges[i].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
+            allTheBadges[i+1].innerHTML = todoList["badge"][currentMonth + "-" + y].length;
             console.log(allTheBadges[i].innerHTML);
-            allTheBadges[i].style.display = "inline-block";
+            allTheBadges[i+1].style.display = "inline-block";
             if (todoList["badge"][currentMonth + "-" + y].length < 1) {
-                allTheBadges[i].style.display = "none";
+                allTheBadges[i+1].style.display = "none";
             }
         }
     }
@@ -158,8 +190,7 @@ function removeTodoPrompt() {
  * When the user has written in text that he/she wants to change to and presses the button
  */
 function changeTodoPrompt() {
-
-    if (selectedDateArray != undefined){
+    if (selectedDateArray != null){
 
         //If the date doesn't have an todo
         if (!todoList["todo"][selectedDateArray]){
@@ -172,7 +203,14 @@ function changeTodoPrompt() {
             promptDivAdd.style.display = "none";
             promptDivRemove.style.display = "none"
             promptDivChange.style.display = "block";
-    
+
+            // const textElem = document.getElementById('changeTextPrompt');
+            const chosenToDoElem = document.getElementById(chosenToDo);
+            if (chosenToDoElem) {
+                // textElem.innerText = chosenToDoElem.innerText;
+                changeTextPrompt.value = chosenToDoElem.innerText;
+            }
+
             promptButton[2].addEventListener("click", changeTodo)
         }
     }
@@ -218,6 +256,15 @@ function addTodo() {
 
 
     textPrompt.value = "";
+
+    selectFirstAvailableToDo();
+}
+
+function selectFirstAvailableToDo() {
+    const todoElems = document.getElementsByClassName('textInTodoBox');
+    if (todoElems.length > 0) {
+        selectToDoItem(todoElems[0].id);
+    }
 }
 
 /**
@@ -232,10 +279,12 @@ function removeTodo() {
        todoList["badge"] = {}
    }
 
-    if (typeof chosenToDo != "undefined") {
+    if (chosenToDo != null) {
         let removeTheChosenToDo = document.getElementById(chosenToDo);
         textPromptDiv.style.display = "none";
         removeTheChosenToDo.remove();
+
+        selectFirstAvailableToDo();
     }
     else{
         alert("Please select a todo to remove");
@@ -256,7 +305,10 @@ function removeTodo() {
     todoList["todo"][selectedDateArray] = []
     todoList["badge"][selectedDateArray] = []
 
-    badgeNumber.innerHTML--;
+    // fix error: badgeNumber is undefined
+    // if (badgeNumber) {
+        badgeNumber.innerHTML--;
+    //}
 
     if(badgeNumber < 1) {
         badgeNumber.style.display = 'none';
@@ -285,7 +337,7 @@ function changeTodo() {
 
         if (todoList["todo"][selectedDateArray]) {
 
-            if (typeof chosenToDo != "undefined") {
+            if (chosenToDo != null) {
                 let changeTheChosenToDo = document.getElementById(chosenToDo);
                 let textInput = changeTextPrompt.value;
                 changeTheChosenToDo.innerHTML = textInput;
