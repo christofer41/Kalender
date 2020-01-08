@@ -4,6 +4,9 @@ window.addEventListener("load", printTime)
 
 window.addEventListener("load", loadPage)
 window.addEventListener("load", loadExistingTodo)
+window.addEventListener("load", theCurrentDateTodo);
+
+
 
 //The selected array
 let selectedDateArray;
@@ -28,7 +31,8 @@ function loadPage() {
     let addTodoButton = document.getElementById("addTodo");
     let removeTodoButton = document.getElementById("removeTodo");
     let changeTodoButton = document.getElementById("changeTodo");
-
+    
+    textInTodoBoxClass = document.getElementsByClassName("textInTodoBox");
     toDoHolder = document.getElementById("toDoHolder");
     textPromptDiv = document.getElementById("textPromptDiv");
     promptButton = document.getElementsByClassName("textButton");
@@ -44,6 +48,7 @@ function loadPage() {
     removeTodoButton.addEventListener("click", removeTodoPrompt);
     changeTodoButton.addEventListener("click", changeTodoPrompt);
 
+
 }
 
 
@@ -56,6 +61,20 @@ function loadExistingTodo() {
         todoList = JSON.parse(localStorage.allArrays);
     }
 }
+
+
+function clickTheToDo(event){
+
+    chosenToDo = event.target.id;
+    let changeTheColor = document.getElementById(chosenToDo);
+
+    for (let i = 0; i < textInTodoBoxClass.length; i++) {
+        textInTodoBoxClass[i].style.backgroundColor = "white";
+    }
+
+    changeTheColor.style.backgroundColor = "lightblue";
+}
+
 
 /**
  * We load existing badges
@@ -205,18 +224,57 @@ function addTodo() {
  * When the user has decided to remove the ToDo and presses the button
  */
 function removeTodo() {
-    textPromptDiv.style.display = "none";
-    removeTodoInBox();
+
+    if (!todoList["todo"]) {
+        todoList["todo"] = {}
+    }
+   if (!todoList["badge"]) {
+       todoList["badge"] = {}
+   }
+
+    if (typeof chosenToDo != "undefined") {
+        let removeTheChosenToDo = document.getElementById(chosenToDo);
+        textPromptDiv.style.display = "none";
+        removeTheChosenToDo.remove();
+    }
+    else{
+        alert("Please select a todo to remove");
+        textPromptDiv.style.display = "none";
+    }
+
+    let saveInArray = [];
+
+    for (let i = 0; i < textInTodoBoxClass.length; i++) {
+        saveInArray.push(textInTodoBoxClass[i].innerHTML);      
+    }
+
 
     todoList["todo"][selectedDateArray] = null;
     todoList["badge"][selectedDateArray] = null;
-    console.log(todoList);
-
-    badgeNumber.innerHTML = "0";
-    badgeNumber.style.display = 'none';
 
 
+    todoList["todo"][selectedDateArray] = []
+    todoList["badge"][selectedDateArray] = []
+
+    badgeNumber.innerHTML--;
+
+    if(badgeNumber < 1) {
+        badgeNumber.style.display = 'none';
+    }
+
+    for (let i = 0; i < saveInArray.length; i++) {
+        todoList["todo"][selectedDateArray].push(saveInArray[i]);      
+    }
+
+    
     localStorage.allArrays = JSON.stringify(todoList);
+    
+    // console.log(todoList);
+
+    // badgeNumber.innerHTML-- ; 
+    // badgeNumber.style.display = 'inline-block';
+
+
 }
 
 /**
@@ -224,24 +282,39 @@ function removeTodo() {
  */
 function changeTodo() {
     if (todoList["todo"][selectedDateArray]) {
-        let textInput = changeTextPrompt.value;
 
-        textPromptDiv.style.display = "none";
-    
-        todoList["todo"][selectedDateArray] = []
-        todoList["badge"][selectedDateArray] = []
-        todoList["todo"][selectedDateArray].push(textInput);
-        console.log(todoList);
-    
-        removeTodoInBox();
-        showTodoInBox();
+        if (todoList["todo"][selectedDateArray]) {
 
-        badgeNumber.innerHTML = "1";
+            if (typeof chosenToDo != "undefined") {
+                let changeTheChosenToDo = document.getElementById(chosenToDo);
+                let textInput = changeTextPrompt.value;
+                changeTheChosenToDo.innerHTML = textInput;
+                textPromptDiv.style.display = "none";
+            }
+            else{
+                alert("Please select a todo to change");
+                textPromptDiv.style.display = "none";
+            }
     
-        todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
-        localStorage.allArrays = JSON.stringify(todoList);
     
-        textPrompt.value = "";
+            let saveInArray = [];
+    
+            for (let i = 0; i < textInTodoBoxClass.length; i++) {
+                saveInArray.push(textInTodoBoxClass[i].innerHTML);      
+            }
+    
+    
+            todoList["todo"][selectedDateArray] = null;
+    
+    
+            todoList["todo"][selectedDateArray] = []
+    
+            for (let i = 0; i < saveInArray.length; i++) {
+                todoList["todo"][selectedDateArray].push(saveInArray[i]);      
+            }
+    
+            localStorage.allArrays = JSON.stringify(todoList);
+        }
     } 
 }
 

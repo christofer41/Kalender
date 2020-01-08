@@ -389,7 +389,10 @@ function showTodoInBox(){
             let txt = document.createElement("p");
             txt.innerHTML = todoList["todo"][selectedDateArray][i];
             txt.className = "textInTodoBox";
+            txt.id = "textInTodoBoxnr" + [i];
             toDoHolder.appendChild(txt);
+            
+            txt.addEventListener("click", clickTheToDo);
         }   
     }
     else{
@@ -410,4 +413,22 @@ function removeTodoInBox(){
     
         }   
     }
+}
+
+
+function theCurrentDateTodo(){
+    
+    selectedDateArray = currentMonth + "-" + new Date().getDate();
+    const array =  todoList["todo"]
+    if (array != null && array[selectedDateArray] != null){
+        for (let i = 0; i < todoList["todo"][selectedDateArray].length; i++) {
+            let txt = document.createElement("p");
+            txt.innerHTML = todoList["todo"][selectedDateArray][i];
+            txt.className = "textInTodoBox";
+            txt.id = "textInTodoBox" + i;
+            toDoHolder.appendChild(txt);
+
+            txt.addEventListener("click", clickTheToDo);        
+        }   
+    }
 }
