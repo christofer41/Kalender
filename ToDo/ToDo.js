@@ -4,6 +4,7 @@ window.addEventListener("load", printTime)
 
 window.addEventListener("load", loadPage)
 window.addEventListener("load", loadExistingTodo)
+window.addEventListener("load", theCurrentDateTodo);
 
 //The selected array
 let selectedDateArray;

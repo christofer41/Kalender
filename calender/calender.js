@@ -411,3 +411,27 @@ function removeTodoInBox(){
         }   
     }
 }
+
+function theCurrentDateTodo(){
+    
+    selectedDateArray = currentMonth + "-" + new Date().getDate();
+    const array =  todoList["todo"]
+    if (array != null && array[selectedDateArray] != null){
+        for (let i = 0; i < todoList["todo"][selectedDateArray].length; i++) {
+            let txt = document.createElement("p");
+            txt.innerHTML = todoList["todo"][selectedDateArray][i];
+            txt.className = "textInTodoBox";
+            toDoHolder.appendChild(txt);
+ 
+            txt.addEventListener("click", clickTheToDo);   
+    
+
+            
+            badgeNumber.innerHTML++;
+            badgeNumber.style.display = 'inline-block';
+            todoList["badge"][selectedDateArray].push(badgeNumber.innerHTML);
+
+            localStorage.allArrays = JSON.stringify(todoList);
+        }   
+    }
+}
