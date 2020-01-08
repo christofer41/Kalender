@@ -1,19 +1,149 @@
-html, body{
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-}
+aside>* {
+    /*We make the content center*/
+    display: flex;
+    justify-content: center;
+    }
 
-header{
-    display: none;
-}
-
-aside{
-    border: 2px solid blue;
-    height: 100%;
+#toDoHolder {
+    /*Lådan som håller den aktuella ToDo*/
+    border: 2px solid black;
     width: 100%;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
-main{
+#toDoHolder>* {
+    /*Centrera*/
+    display: flex;
+    justify-content: center;
+}
+
+.textInTodoBox{
+    /*Add a little space between the todos*/
+    margin: 0.1rem auto;
+}
+
+#textPromptDiv {
+    /*The div that pops up when the user wants to add a ToDo */
     display: none;
+    border: 2px solid blue;
+    background-color: rgb(179, 179, 179);
+    position: absolute;
+    left: 15rem;
+    right: 15rem;
+    top: 10rem;
+    bottom: 10rem;
+    animation-name: fadeIn;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+    /*A fade in animation*/
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#toDoButtons {
+    /*The div for the buttons*/
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+#toDoButtons>* {
+    display: flex;
+    justify-content: center;
+}
+
+#toDoButtons button {
+    margin-bottom: 1rem;
+    width: 12rem;
+}
+
+#addPromptDiv, #removePromptDiv, #changePromptDiv {
+    /*We make the prompt divs fit the entire div*/
+    width: 100%;
+    height: 100%;
+}
+
+#addPromptDiv>*, #removePromptDiv>*, #changePromptDiv>* {
+    /*Center the content*/
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+#addPromptDiv {
+    display: none;
+}
+
+#removePromptDiv {
+    display: none;
+}
+
+#changePromptDiv {
+    display: none;
+}
+
+#textPrompt, #enterTheTextButton, #changeTextPrompt, #changeTheTextButton, #removeTheTextButton, button {
+    /*We set margin to 0 to be able to center*/
+    margin: 0 auto;
+    text-align: center;
+}
+
+.welcomeMessage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-right: 3rem;
+}
+
+h3 {
+    font-size: 1.7rem;
+    margin: 0;
+    font-family: arial;
+    font-weight: lighter;
+    text-transform: uppercase;
+}
+
+/* styles the divs for time,date and day of the week */
+
+#dateOfYear {
+    font-size: 1rem;
+    font-family: sans-serif;
+    margin: 0.5rem 0 0.5rem 0;
+    padding-right: 1rem;
+}
+
+#time {
+    font-size: 2rem;
+    font-family: arial;
+    margin: 0.5rem 0 0 0;
+    font-family: 'Tomorrow', sans-serif;
+}
+
+.cat-image {
+    display: none;
+}
+
+.iconsForSeasons, .iconsForCalenderMonths, h1, #calend-nav, main{
+    display: none;
+}
+
+.welcomeMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1rem;
 }
