@@ -238,8 +238,8 @@ function checkExcessDays(){
     switch(currentMonth){
 
         case 1:
-            start = 1;
-            end = 33;
+            start = 2;
+            end = 34;
             break;
 
         case 2:
